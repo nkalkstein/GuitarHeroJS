@@ -1,1 +1,1 @@
-# GuitarHeroJS
+GUitar hero for school
