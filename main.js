@@ -62,8 +62,7 @@ function create() {
 
 
 function update() {
-
-
+	
 }
 
 function render() {
@@ -71,4 +70,22 @@ function render() {
     // debug info pour les boules
     game.debug.spriteInfo(boule_bleu, 32, 32);
 
+
 }
+
+
+
+function checkSpriteOffScreen(boule_bleu) {
+
+    try {
+        if (boule_bleu.y > 800)
+        {
+            boule_bleu.remove(boule_bleu, true);
+        }
+    }
+	catch (e)
+	    {
+		console.log(boule_bleu);
+	    }
+}
+
