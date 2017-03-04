@@ -42,7 +42,7 @@ function update() {
 
 function render() {
 
-    // Sprite debug info
+    // debug info pour les boules
     game.debug.spriteInfo(boule_bleu, 32, 32);
 
 }
