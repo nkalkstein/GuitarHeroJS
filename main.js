@@ -40,8 +40,6 @@ function create() {
 	game.physics.enable( [boule_bleu, boule_verte, boule_rouge, boule_jaune], Phaser.Physics.ARCADE);
 
 	
-	game.debug.text("boule_bleu.y :", 10,10)
-	
 	
 	boule_bleu.checkWorldBounds = true; //--> check si la boule est dans les bornes du jeu 
 	boule_bleu.outOfBoundsKill = true; //--> si en dehors des bornes du jeu alors on kill la boule
