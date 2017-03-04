@@ -73,17 +73,3 @@ function render() {
 
 
 
-function checkSpriteOffScreen(boule_bleu) {
-
-    try {
-        if (boule_bleu.y > 800)
-        {
-            boule_bleu.remove(boule_bleu, true);
-        }
-    }
-	catch (e)
-	    {
-		console.log(boule_bleu);
-	    }
-}
-
