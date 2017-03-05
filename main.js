@@ -22,9 +22,9 @@ function create() {
 
 	game.add.sprite(0,0, 'bg');
 	
-	//boule_bleu = game.add.sprite(82, 10, 'boule_bleu');
+	boule_bleu = game.add.sprite(82, 10, 'boule_bleu');
 	//on upscale car trop petit
-	//boule_bleu.scale.setTo(1.5,1.5);
+	boule_bleu.scale.setTo(1.5,1.5);
 	
 	
 	boule_verte = game.add.sprite(205, 10, 'boule_verte');
@@ -43,8 +43,8 @@ function create() {
 
 	
 	
-	//boule_bleu.checkWorldBounds = true; //--> check si la boule est dans les bornes du jeu 
-	//boule_bleu.outOfBoundsKill = true; //--> si en dehors des bornes du jeu alors on kill la boule
+	boule_bleu.checkWorldBounds = true; //--> check si la boule est dans les bornes du jeu 
+	boule_bleu.outOfBoundsKill = true; //--> si en dehors des bornes du jeu alors on kill la boule
 	
 	boule_verte.checkWorldBounds = true;
 	boule_verte.outOfBoundsKill = true;
@@ -55,7 +55,7 @@ function create() {
 	boule_jaune.checkWorldBounds = true;
 	boule_jaune.outOfBoundsKill = true;
 	
-	
+	game.physics.enable( [boule_bleu, boule_verte, boule_rouge, boule_jaune], Phaser.Physics.ARCADE);
 
 	text = game.add.text(game.world.centerX, game.world.centerY, 'test :');
 	
@@ -63,20 +63,17 @@ function create() {
 	//game.time.events.loop(100, crea_nombre_rand, this);
 	
 
-	game.time.events.loop(game.rnd.integerInRange(100, 4000), crea_sprite_bleu, this);
+	game.time.events.loop(game.rnd.integerInRange(400, 3000), crea_sprite_bleu, this);
 	
-<<<<<<< HEAD
-	game.time.events.loop(game.rnd.integerInRange(200, 2000), crea_sprite_verte, this);
+	game.time.events.loop(game.rnd.integerInRange(500, 2000), crea_sprite_verte, this);
 	
-	game.time.events.loop(game.rnd.integerInRange(200, 2000), crea_sprite_rouge, this);
+	game.time.events.loop(game.rnd.integerInRange(500, 2000), crea_sprite_rouge, this);
 	
-	game.time.events.loop(game.rnd.integerInRange(200, 2000), crea_sprite_jaune, this);
+	game.time.events.loop(game.rnd.integerInRange(500, 2000), crea_sprite_jaune, this);
 	
 	
-	game.physics.enable( [boule_bleu, boule_verte, boule_rouge, boule_jaune], Phaser.Physics.ARCADE);
-=======
-	game.physics.enable( [ boule_verte, boule_rouge, boule_jaune], Phaser.Physics.ARCADE);
->>>>>>> 1dcd954bb62cc18cd6733feca79db324194a7aa5
+	
+
 	
 }
 
@@ -98,31 +95,31 @@ function crea_sprite_bleu() {
 	var boule_bleu_rand = game.add.sprite(82, -200, 'boule_bleu');
 	boule_bleu_rand.scale.setTo(1.5,1.5);
 	game.physics.enable( [boule_bleu_rand], Phaser.Physics.ARCADE);
-	boule_bleu_rand.body.gravity.y=50;
+	boule_bleu_rand.body.gravity.y=40;
 	
 }
 
 function crea_sprite_verte() {
-	var boule_verte_rand = game.add.sprite(205, 10, 'boule_verte');
+	var boule_verte_rand = game.add.sprite(205, -200, 'boule_verte');
 	boule_verte_rand.scale.setTo(1.5,1.5);
 	game.physics.enable( [boule_verte_rand], Phaser.Physics.ARCADE);
-	
+	boule_verte_rand.body.gravity.y=40;
 	
 }
 
 function crea_sprite_rouge() {
-	var boule_rouge_rand = game.add.sprite(328, 10, 'boule_rouge');
+	var boule_rouge_rand = game.add.sprite(328, -200, 'boule_rouge');
 	boule_rouge_rand.scale.setTo(1.5,1.5);
 	game.physics.enable( [boule_rouge_rand], Phaser.Physics.ARCADE);
-	
+	boule_rouge_rand.body.gravity.y=40;
 	
 }
 
 function crea_sprite_jaune() {
-	var boule_jaune_rand = game.add.sprite(450, 10, 'boule_jaune');
+	var boule_jaune_rand = game.add.sprite(450, -200, 'boule_jaune');
 	boule_jaune_rand.scale.setTo(1.5,1.5);
 	game.physics.enable( [boule_jaune_rand], Phaser.Physics.ARCADE);
-	
+	boule_jaune_rand.body.gravity.y=40;
 	
 }
 
