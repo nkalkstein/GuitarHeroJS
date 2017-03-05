@@ -39,7 +39,7 @@ function create() {
 	boule_jaune.scale.setTo(1.5,1.5);	
 	
 
-	game.physics.enable( [boule_bleu, boule_verte, boule_rouge, boule_jaune], Phaser.Physics.ARCADE);
+	
 
 	
 	
@@ -60,9 +60,12 @@ function create() {
 	text = game.add.text(game.world.centerX, game.world.centerY, 'test :');
 	
 
-	game.time.events.loop(100, crea_nombre_rand, this);
+	//game.time.events.loop(100, crea_nombre_rand, this);
 	
+
+	game.time.events.loop(game.rnd.integerInRange(200, 2000), crea_sprite_bleu, this);
 	
+	game.physics.enable( [boule_bleu, boule_verte, boule_rouge, boule_jaune], Phaser.Physics.ARCADE);
 	
 }
 
@@ -73,17 +76,27 @@ function update() {
 
 
 
-var random_number_bleu
+//var random_number_bleu
 
-function crea_nombre_rand() {
-	random_number_bleu = game.rnd.integerInRange(50, 200)/100 ;
-	text.setText('test :' + random_number_bleu);
+//function crea_nombre_rand() {
+//	random_number_bleu = game.rnd.integerInRange(50, 200)/100 ; //generation de 
+//	text.setText('test :' + random_number_bleu);
+//}
+
+function crea_sprite_bleu() {
+	var boule_bleu_rand = game.add.sprite(82, game.rnd.integerInRange(0, 600), 'boule_bleu');
+	
+	
+	
+	
 }
+
 
 function render() {
 
     // debug info pour les boules
     game.debug.spriteInfo(boule_bleu, 32, 32);
+
 
 
 }
