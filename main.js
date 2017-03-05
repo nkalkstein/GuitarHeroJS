@@ -14,6 +14,8 @@ var boule_rouge
 var boule_verte
 var boule_jaune
 
+var text
+
 function create() {
 	game.physics.startSystem(Phaser.Physics.ARCADE); //ajout de la physique
 	game.physics.arcade.gravity.y = 100;   
@@ -53,7 +55,13 @@ function create() {
 	boule_jaune.checkWorldBounds = true;
 	boule_jaune.outOfBoundsKill = true;
 	
+	
 
+	text = game.add.text(game.world.centerX, game.world.centerY, 'test :');
+	
+
+	game.time.events.loop(100, crea_nombre_rand, this);
+	
 	
 	
 }
@@ -63,6 +71,15 @@ function update() {
 	
 }
 
+
+
+var random_number_bleu
+
+function crea_nombre_rand() {
+	random_number_bleu = game.rnd.integerInRange(50, 200)/100 ;
+	text.setText('test :' + random_number_bleu);
+}
+
 function render() {
 
     // debug info pour les boules
@@ -70,6 +87,5 @@ function render() {
 
 
 }
-
 
 
