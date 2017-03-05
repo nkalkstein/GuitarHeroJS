@@ -22,9 +22,9 @@ function create() {
 
 	game.add.sprite(0,0, 'bg');
 	
-	boule_bleu = game.add.sprite(82, 10, 'boule_bleu');
+	//boule_bleu = game.add.sprite(82, 10, 'boule_bleu');
 	//on upscale car trop petit
-	boule_bleu.scale.setTo(1.5,1.5);
+	//boule_bleu.scale.setTo(1.5,1.5);
 	
 	
 	boule_verte = game.add.sprite(205, 10, 'boule_verte');
@@ -43,8 +43,8 @@ function create() {
 
 	
 	
-	boule_bleu.checkWorldBounds = true; //--> check si la boule est dans les bornes du jeu 
-	boule_bleu.outOfBoundsKill = true; //--> si en dehors des bornes du jeu alors on kill la boule
+	//boule_bleu.checkWorldBounds = true; //--> check si la boule est dans les bornes du jeu 
+	//boule_bleu.outOfBoundsKill = true; //--> si en dehors des bornes du jeu alors on kill la boule
 	
 	boule_verte.checkWorldBounds = true;
 	boule_verte.outOfBoundsKill = true;
@@ -63,9 +63,9 @@ function create() {
 	//game.time.events.loop(100, crea_nombre_rand, this);
 	
 
-	game.time.events.loop(game.rnd.integerInRange(200, 2000), crea_sprite_bleu, this);
+	game.time.events.loop(game.rnd.integerInRange(100, 4000), crea_sprite_bleu, this);
 	
-	game.physics.enable( [boule_bleu, boule_verte, boule_rouge, boule_jaune], Phaser.Physics.ARCADE);
+	game.physics.enable( [ boule_verte, boule_rouge, boule_jaune], Phaser.Physics.ARCADE);
 	
 }
 
@@ -84,10 +84,10 @@ function update() {
 //}
 
 function crea_sprite_bleu() {
-	var boule_bleu_rand = game.add.sprite(82, 10, 'boule_bleu');
+	var boule_bleu_rand = game.add.sprite(82, -200, 'boule_bleu');
 	boule_bleu_rand.scale.setTo(1.5,1.5);
 	game.physics.enable( [boule_bleu_rand], Phaser.Physics.ARCADE);
-	
+	boule_bleu_rand.body.gravity.y=50;
 	
 }
 
@@ -95,7 +95,7 @@ function crea_sprite_bleu() {
 function render() {
 
     // debug info pour les boules
-    game.debug.spriteInfo(boule_bleu, 32, 32);
+    game.debug.spriteInfo(boule_jaune, 32, 32);
 	
 
 
