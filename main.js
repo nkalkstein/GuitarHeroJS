@@ -65,6 +65,13 @@ function create() {
 
 	game.time.events.loop(game.rnd.integerInRange(200, 2000), crea_sprite_bleu, this);
 	
+	game.time.events.loop(game.rnd.integerInRange(200, 2000), crea_sprite_verte, this);
+	
+	game.time.events.loop(game.rnd.integerInRange(200, 2000), crea_sprite_rouge, this);
+	
+	game.time.events.loop(game.rnd.integerInRange(200, 2000), crea_sprite_jaune, this);
+	
+	
 	game.physics.enable( [boule_bleu, boule_verte, boule_rouge, boule_jaune], Phaser.Physics.ARCADE);
 	
 }
@@ -87,6 +94,30 @@ function crea_sprite_bleu() {
 	var boule_bleu_rand = game.add.sprite(82, 10, 'boule_bleu');
 	boule_bleu_rand.scale.setTo(1.5,1.5);
 	game.physics.enable( [boule_bleu_rand], Phaser.Physics.ARCADE);
+	
+	
+}
+
+function crea_sprite_verte() {
+	var boule_verte_rand = game.add.sprite(205, 10, 'boule_verte');
+	boule_verte_rand.scale.setTo(1.5,1.5);
+	game.physics.enable( [boule_verte_rand], Phaser.Physics.ARCADE);
+	
+	
+}
+
+function crea_sprite_rouge() {
+	var boule_rouge_rand = game.add.sprite(328, 10, 'boule_rouge');
+	boule_rouge_rand.scale.setTo(1.5,1.5);
+	game.physics.enable( [boule_rouge_rand], Phaser.Physics.ARCADE);
+	
+	
+}
+
+function crea_sprite_jaune() {
+	var boule_jaune_rand = game.add.sprite(450, 10, 'boule_jaune');
+	boule_jaune_rand.scale.setTo(1.5,1.5);
+	game.physics.enable( [boule_jaune_rand], Phaser.Physics.ARCADE);
 	
 	
 }
