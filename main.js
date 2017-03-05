@@ -84,9 +84,9 @@ function update() {
 //}
 
 function crea_sprite_bleu() {
-	var boule_bleu_rand = game.add.sprite(82, game.rnd.integerInRange(0, 600), 'boule_bleu');
-	
-	
+	var boule_bleu_rand = game.add.sprite(82, 10, 'boule_bleu');
+	boule_bleu_rand.scale.setTo(1.5,1.5);
+	game.physics.enable( [boule_bleu_rand], Phaser.Physics.ARCADE);
 	
 	
 }
@@ -96,7 +96,7 @@ function render() {
 
     // debug info pour les boules
     game.debug.spriteInfo(boule_bleu, 32, 32);
-
+	
 
 
 }
