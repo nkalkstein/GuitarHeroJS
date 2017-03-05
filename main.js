@@ -82,6 +82,10 @@ function update() {
 	
 }
 
+function score(s){
+	return s + 10;
+}
+
 
 
 //var random_number_bleu
