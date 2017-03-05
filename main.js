@@ -22,40 +22,40 @@ function create() {
 
 	game.add.sprite(0,0, 'bg');
 	
-	boule_bleu = game.add.sprite(82, 10, 'boule_bleu');
+	//boule_bleu = game.add.sprite(82, 10, 'boule_bleu');
 	//on upscale car trop petit
-	boule_bleu.scale.setTo(1.5,1.5);
+	//boule_bleu.scale.setTo(1.5,1.5);
 	
 	
-	boule_verte = game.add.sprite(205, 10, 'boule_verte');
-	boule_verte.scale.setTo(1.5,1.5);
+	//boule_verte = game.add.sprite(205, 10, 'boule_verte');
+	//boule_verte.scale.setTo(1.5,1.5);
 	
 	
-	boule_rouge = game.add.sprite(328, 10, 'boule_rouge');
-	boule_rouge.scale.setTo(1.5,1.5);
+	//boule_rouge = game.add.sprite(328, 10, 'boule_rouge');
+	//boule_rouge.scale.setTo(1.5,1.5);
 
 	
-	boule_jaune = game.add.sprite(450, 10, 'boule_jaune');
-	boule_jaune.scale.setTo(1.5,1.5);	
+	//boule_jaune = game.add.sprite(450, 10, 'boule_jaune');
+	//boule_jaune.scale.setTo(1.5,1.5);	
 	
 
 	
 
 	
 	
-	boule_bleu.checkWorldBounds = true; //--> check si la boule est dans les bornes du jeu 
-	boule_bleu.outOfBoundsKill = true; //--> si en dehors des bornes du jeu alors on kill la boule
+	//boule_bleu.checkWorldBounds = true; //--> check si la boule est dans les bornes du jeu 
+	//boule_bleu.outOfBoundsKill = true; //--> si en dehors des bornes du jeu alors on kill la boule
 	
-	boule_verte.checkWorldBounds = true;
-	boule_verte.outOfBoundsKill = true;
+	//boule_verte.checkWorldBounds = true;
+	//boule_verte.outOfBoundsKill = true;
 	
-	boule_rouge.checkWorldBounds = true;
-	boule_rouge.outOfBoundsKill = true;
+	//boule_rouge.checkWorldBounds = true;
+	//boule_rouge.outOfBoundsKill = true;
 	
-	boule_jaune.checkWorldBounds = true;
-	boule_jaune.outOfBoundsKill = true;
+	//boule_jaune.checkWorldBounds = true;
+	//boule_jaune.outOfBoundsKill = true;
 	
-	game.physics.enable( [boule_bleu, boule_verte, boule_rouge, boule_jaune], Phaser.Physics.ARCADE);
+	//game.physics.enable( [boule_bleu, boule_verte, boule_rouge, boule_jaune], Phaser.Physics.ARCADE);
 
 	text = game.add.text(game.world.centerX, game.world.centerY, 'test :');
 	
@@ -127,7 +127,7 @@ function crea_sprite_jaune() {
 function render() {
 
     // debug info pour les boules
-    game.debug.spriteInfo(boule_jaune, 32, 32);
+   // game.debug.spriteInfo(boule_jaune, 32, 32);
 	
 
 
