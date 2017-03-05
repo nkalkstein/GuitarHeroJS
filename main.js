@@ -60,11 +60,7 @@ function create() {
 	text = game.add.text(game.world.centerX, game.world.centerY, 'test :');
 	
 
-<<<<<<< HEAD
-	game.time.events.loop(crea_nombre_rand, create, this);
-=======
 	//game.time.events.loop(100, crea_nombre_rand, this);
->>>>>>> 58efcb52b231c1ee04f3bce5371f2eb1b67cbb89
 	
 
 	game.time.events.loop(game.rnd.integerInRange(200, 2000), crea_sprite_bleu, this);
@@ -87,14 +83,6 @@ function update() {
 //	text.setText('test :' + random_number_bleu);
 //}
 
-<<<<<<< HEAD
-function crea_nombre_rand() {
-	random_number_bleu = game.rnd.integerInRange(50, 200);
-	text.setText('test :' + random_number_bleu);
-}
-
-function creation_boule
-=======
 function crea_sprite_bleu() {
 	var boule_bleu_rand = game.add.sprite(82, 10, 'boule_bleu');
 	boule_bleu_rand.scale.setTo(1.5,1.5);
@@ -103,7 +91,6 @@ function crea_sprite_bleu() {
 	
 }
 
->>>>>>> 58efcb52b231c1ee04f3bce5371f2eb1b67cbb89
 
 function render() {
 
@@ -113,5 +100,4 @@ function render() {
 
 
 }
-
 
