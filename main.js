@@ -60,7 +60,7 @@ function create() {
 	text = game.add.text(game.world.centerX, game.world.centerY, 'test :');
 	
 
-	game.time.events.loop(100, crea_nombre_rand, this);
+	game.time.events.loop(crea_nombre_rand, create, this);
 	
 	
 	
@@ -76,9 +76,11 @@ function update() {
 var random_number_bleu
 
 function crea_nombre_rand() {
-	random_number_bleu = game.rnd.integerInRange(50, 200)/100 ;
+	random_number_bleu = game.rnd.integerInRange(50, 200);
 	text.setText('test :' + random_number_bleu);
 }
+
+function creation_boule
 
 function render() {
 
