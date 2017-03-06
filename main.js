@@ -16,7 +16,7 @@ var boule_jaune
 
 var sprite_test
 var score
-var spacekey
+var spaceKey
 
 var text
 
@@ -26,7 +26,7 @@ function create() {
 
 	game.add.sprite(0,0, 'bg');
 	
-	game.add.sprite(115,644, 'sprite_test');
+	game.add.sprite(115,644, 'sprite_test'); //--> ajout d'un nouveau sprite pour mesurer la distance entre ce sprite et la boule bleu
 	
 
 	
@@ -81,7 +81,7 @@ function create() {
 	game.time.events.loop(game.rnd.integerInRange(500, 2000), crea_sprite_jaune, this);
 	
 	
-	this.spacekey = game.input.keyboard.addKey(Phaser.Keyboard.SPACEBAR);
+	spaceKey = game.input.keyboard.addKey(Phaser.Keyboard.SPACEBAR);
 
 	
 }
@@ -89,10 +89,15 @@ function create() {
 
 function update() {
 	
+	if (spaceKey.isDown)   //--> à chaque utilisation de la barre espace on invoque la fonction position_sprite_validation
+	{
+		position_sprite_validation();
+	}
 }
 
 function position_sprite_validation() {
-	if (game.physics.arcade.distanceBetween(boule_bleu, sprite_test) > 30  &&  this.spacekey.isDown){
+	if (game.physics.arcade.distanceBetween(boule_bleu, sprite_test) > 100)
+	{
 		score += 10;
 		text.setText('score : 0' + score);
 	};
@@ -111,9 +116,6 @@ function crea_sprite_bleu() {
 	boule_bleu_rand.scale.setTo(1.5,1.5);
 	game.physics.enable( [boule_bleu_rand], Phaser.Physics.ARCADE);
 	boule_bleu_rand.body.gravity.y=40;
-	
-	score += 10;
-	text.setText('score :' + score);
 	
 }
 
