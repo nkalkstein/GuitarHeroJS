@@ -16,7 +16,7 @@ var boule_jaune
 
 var sprite_test
 var score
-var spaceKey
+var bouleBleuKey
 
 var text
 
@@ -81,7 +81,7 @@ function create() {
 	game.time.events.loop(game.rnd.integerInRange(500, 2000), crea_sprite_jaune, this);
 	
 	
-	spaceKey = game.input.keyboard.addKey(Phaser.Keyboard.SPACEBAR);
+	bouleBleuKey = game.input.keyboard.addKey(Phaser.Keyboard.A);
 
 	
 }
@@ -89,14 +89,16 @@ function create() {
 
 function update() {
 	
-	if (spaceKey.isDown)   //--> à chaque utilisation de la barre espace on invoque la fonction position_sprite_validation
+	if (bouleBleuKey.isDown)   //--> à chaque utilisation de la touche A on invoque la fonction position_sprite_validation
 	{
 		position_sprite_validation();
 	}
 }
 
+
+//--> fonction qui permet d'augmenter le score de 10 si lorsque qu'elle est invoqué regarde si la distance entre la boule bleu et le sprite test (situé sur la barre verte) est infèrieur à 100
 function position_sprite_validation() {
-	if (game.physics.arcade.distanceBetween(boule_bleu, sprite_test) > 100)
+	if (game.physics.arcade.distanceBetween(boule_bleu, sprite_test) < 100)
 	{
 		score += 10;
 		text.setText('score : 0' + score);
