@@ -74,14 +74,16 @@ function create() {
 
 	game.time.events.loop(game.rnd.integerInRange(400, 3000), crea_sprite_bleu, this);
 	
-	game.time.events.loop(game.rnd.integerInRange(500, 2000), crea_sprite_verte, this);
+	game.time.events.loop(game.rnd.integerInRange(600, 2000), crea_sprite_verte, this);
 	
-	game.time.events.loop(game.rnd.integerInRange(500, 2000), crea_sprite_rouge, this);
+	game.time.events.loop(game.rnd.integerInRange(600, 2000), crea_sprite_rouge, this);
 	
-	game.time.events.loop(game.rnd.integerInRange(500, 2000), crea_sprite_jaune, this);
+	game.time.events.loop(game.rnd.integerInRange(800, 2000), crea_sprite_jaune, this);
 	
 	
 	bouleBleuKey = game.input.keyboard.addKey(Phaser.Keyboard.A);
+	
+	//game.physics.enable( [sprite_test], Phaser.Physics.ARCADE);
 
 	
 }
@@ -98,10 +100,14 @@ function update() {
 
 //--> fonction qui permet d'augmenter le score de 10 si lorsque qu'elle est invoqué regarde si la distance entre la boule bleu et le sprite test (situé sur la barre verte) est infèrieur à 100
 function position_sprite_validation() {
-	if (game.physics.arcade.distanceBetween(boule_bleu, sprite_test) < 100)
+	if (game.physics.arcade.distanceBetween(boule_bleu_rand, sprite_test) < 100)
 	{
 		score += 10;
 		text.setText('score : 0' + score);
+	}
+	else
+	{
+		score -= 5;
 	};
 }
 
