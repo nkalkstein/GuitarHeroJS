@@ -110,7 +110,7 @@ function position_sprite_validation() {
 		score -= 5;
 	};
 }
-
+ // si on appuie sur A trop tôt on perd 5 points
 
 //var random_number_bleu
 
