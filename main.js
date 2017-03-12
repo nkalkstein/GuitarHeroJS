@@ -93,24 +93,18 @@ function update() {
 	
 	if (bouleBleuKey.isDown)   //--> à chaque utilisation de la touche A on invoque la fonction position_sprite_validation
 	{
-		position_sprite_validation();
+		if (game.physics.arcade.distanceBetween(boule_bleu_rand, sprite_test)> 100)
+		{
+			score += 10;
+			text.setText('score : 0' + score);
+		}
+		else
+		{
+			score -= 5;
+		};
 	}
 }
 
-
-//--> fonction qui permet d'augmenter le score de 10 si lorsque qu'elle est invoqué regarde si la distance entre la boule bleu et le sprite test (situé sur la barre verte) est infèrieur à 100
-function position_sprite_validation() {
-	if (game.physics.arcade.distanceBetween(boule_bleu_rand, sprite_test) < 100)
-	{
-		score += 10;
-		text.setText('score : 0' + score);
-	}
-	else
-	{
-		score -= 5;
-	};
-}
- // si on appuie sur A trop tôt on perd 5 points
 
 //var random_number_bleu
 
