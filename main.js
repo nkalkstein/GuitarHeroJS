@@ -6,7 +6,7 @@ function preload() {
 	game.load.image('boule_verte' , 'img/boule_vert3.png');
 	game.load.image('boule_rouge' , 'img/boule_rouge3.png');
 	game.load.image('boule_jaune' , 'img/boule_jaune3.png');
-	game.load.image('sprite_test' , 'img/sprite_test.png');
+	game.load.image('point_test' , 'img/sprite_test.png');
 }
 
 var boule_bleu
@@ -14,7 +14,7 @@ var boule_rouge
 var boule_verte
 var boule_jaune
 
-var sprite_test
+var point_test
 var score
 var bouleBleuKey
 
@@ -26,7 +26,7 @@ function create() {
 
 	game.add.sprite(0,0, 'bg');
 	
-	game.add.sprite(115,644, 'sprite_test'); //--> ajout d'un nouveau sprite pour mesurer la distance entre ce sprite et la boule bleu
+	game.add.sprite(115,644, 'point_test'); //--> ajout d'un nouveau sprite pour mesurer la distance entre ce sprite et la boule bleu
 	
 
 	
@@ -65,7 +65,6 @@ function create() {
 	
 	//game.physics.enable( [boule_bleu, boule_verte, boule_rouge, boule_jaune], Phaser.Physics.ARCADE);
 	
-	score = 0;
 	text = game.add.text(game.world.centerX, game.world.centerY, 'score :');
 	
 
@@ -80,9 +79,6 @@ function create() {
 	
 	game.time.events.loop(game.rnd.integerInRange(800, 2000), crea_sprite_jaune, this);
 	
-	
-	bouleBleuKey = game.input.keyboard.addKey(Phaser.Keyboard.A);
-	
 	//game.physics.enable( [sprite_test], Phaser.Physics.ARCADE);
 
 	
@@ -91,18 +87,6 @@ function create() {
 
 function update() {
 	
-	if (bouleBleuKey.isDown)   //--> à chaque utilisation de la touche A on invoque la fonction position_sprite_validation
-	{
-		if (game.physics.arcade.distanceBetween(boule_bleu_rand, sprite_test)> 100)
-		{
-			score += 10;
-			text.setText('score : 0' + score);
-		}
-		else
-		{
-			score -= 5;
-		};
-	}
 }
 
 
