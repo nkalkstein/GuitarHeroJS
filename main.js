@@ -46,10 +46,6 @@ function create() {
 	//boule_jaune = game.add.sprite(450, 10, 'boule_jaune');
 	//boule_jaune.scale.setTo(1.5,1.5);	
 	
-
-	
-
-	
 	
 	//boule_bleu.checkWorldBounds = true; //--> check si la boule est dans les bornes du jeu 
 	//boule_bleu.outOfBoundsKill = true; //--> si en dehors des bornes du jeu alors on kill la boule
@@ -65,22 +61,22 @@ function create() {
 	
 	//game.physics.enable( [boule_bleu, boule_verte, boule_rouge, boule_jaune], Phaser.Physics.ARCADE);
 	
-	text = game.add.text(game.world.centerX, game.world.centerY, 'score :');
-	
-
 	//game.time.events.loop(100, crea_nombre_rand, this);
 	
 
-	game.time.events.loop(game.rnd.integerInRange(400, 3000), crea_sprite_bleu, this);
+	//game.time.events.loop(game.rnd.integerInRange(400, 3000), crea_sprite_bleu, this);
 	
-	game.time.events.loop(game.rnd.integerInRange(600, 2000), crea_sprite_verte, this);
+	//game.time.events.loop(game.rnd.integerInRange(600, 2000), crea_sprite_verte, this);
 	
-	game.time.events.loop(game.rnd.integerInRange(600, 2000), crea_sprite_rouge, this);
+	//game.time.events.loop(game.rnd.integerInRange(600, 2000), crea_sprite_rouge, this);
 	
-	game.time.events.loop(game.rnd.integerInRange(800, 2000), crea_sprite_jaune, this);
+	//game.time.events.loop(game.rnd.integerInRange(800, 2000), crea_sprite_jaune, this);
 	
 	//game.physics.enable( [sprite_test], Phaser.Physics.ARCADE);
-
+	
+	text = game.add.text(game.world.centerX, game.world.centerY, 'test :');
+	
+	game.time.events.loop(1000, crea_nombre_rand, this);
 	
 }
 
@@ -88,6 +84,28 @@ function create() {
 function update() {
 	
 }
+var random_number
+function crea_nombre_rand() {
+	random_number = game.rnd.integerInRange(1, 4) ;
+	text.setText('test :' + random_number);
+	if (random_number == 1)
+	{
+		crea_sprite_bleu();
+	}
+	if (random_number == 2)
+	{
+		crea_sprite_verte();
+	}
+	if (random_number == 3)
+	{
+		crea_sprite_rouge();
+	}
+	if (random_number == 4)
+	{
+		crea_sprite_jaune();
+	}
+}
+
 
 
 //var random_number_bleu
@@ -138,4 +156,3 @@ function render() {
 
 
 }
-
