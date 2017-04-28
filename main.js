@@ -42,11 +42,11 @@ function update() {
 	if (game.input.keyboard.isDown(Phaser.Keyboard.A))
 	{
 
-		if (blue_boule_group.getChildAt(-1).y>500&&<blue_boule_group.getChildAt(-1).y<600)
+		if (blue_boule_group.getChildAt(-1).y>500&&blue_boule_group.getChildAt(-1).y<600)
 		{
 			score+=1;
 		}
-		if (blue_boule_group.getChildAt(-1).y>=600&&<blue_boule_group.getChildAt(-1).y<700)
+		if (blue_boule_group.getChildAt(-1).y>=600&&blue_boule_group.getChildAt(-1).y<700)
 		{
 			score+=5; 
 		}
@@ -56,24 +56,13 @@ function update() {
 var random_number
 
 function crea_nombre_rand() {
-	random_number = game.rnd.integerInRange(1, 4) ;
+	random_number = game.rnd.integerInRange(1, 2) ;
 	text.setText('test :' + random_number);
 	if (random_number == 1)
 	{
 		crea_sprite_bleu();
 	}
-	if (random_number == 2)
-	{
-		crea_sprite_verte();
-	}
-	if (random_number == 3)
-	{
-		crea_sprite_rouge();
-	}
-	if (random_number == 4)
-	{
-		crea_sprite_jaune();
-	}
+	
 }
 
 
