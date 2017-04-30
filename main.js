@@ -40,17 +40,19 @@ function create() {
 
 function update() {
 	if (game.input.keyboard.isDown(Phaser.Keyboard.A))
-	{
+		{
+			if (blue_boule_group.getChildAt(0).y>500&&blue_boule_group.getChildAt(0).y<600)
+			{
+				score+=1;
+				blue_boule_group.getChildAt(0).destroy();
+			}
+			if (blue_boule_group.getChildAt(0).y>=600&&blue_boule_group.getChildAt(0).y<700)
+			{
+				score+=5; 
+				blue_boule_group.getChildAt(0).destroy();
 
-		if (blue_boule_group.getChildAt(-1).y>500&&blue_boule_group.getChildAt(-1).y<600)
-		{
-			score+=1;
+			}
 		}
-		if (blue_boule_group.getChildAt(-1).y>=600&&blue_boule_group.getChildAt(-1).y<700)
-		{
-			score+=5; 
-		}
-	}
 }
 
 var random_number
