@@ -16,6 +16,7 @@ var score
 var bouleBleuKey
 
 var text
+var Blue_button
 
 function create() {
 	game.physics.startSystem(Phaser.Physics.ARCADE); //ajout de la physique
@@ -25,96 +26,57 @@ function create() {
 	
 	game.add.sprite(115,644, 'point_test'); //--> ajout d'un nouveau sprite pour mesurer la distance entre ce sprite et la boule bleu
 	
-
-	
-	//boule_bleu = game.add.sprite(82, 10, 'boule_bleu');
-	//on upscale car trop petit
-	//boule_bleu.scale.setTo(1.5,1.5);
-	
-	
-	//boule_verte = game.add.sprite(205, 10, 'boule_verte');
-	//boule_verte.scale.setTo(1.5,1.5);
-	
-	
-	//boule_rouge = game.add.sprite(328, 10, 'boule_rouge');
-	//boule_rouge.scale.setTo(1.5,1.5);
-
-	
-	//boule_jaune = game.add.sprite(450, 10, 'boule_jaune');
-	//boule_jaune.scale.setTo(1.5,1.5);	
-	
-	
-	//boule_bleu.checkWorldBounds = true; //--> check si la boule est dans les bornes du jeu 
-	//boule_bleu.outOfBoundsKill = true; //--> si en dehors des bornes du jeu alors on kill la boule
-	
-	//boule_verte.checkWorldBounds = true;
-	//boule_verte.outOfBoundsKill = true;
-	
-	//boule_rouge.checkWorldBounds = true;
-	//boule_rouge.outOfBoundsKill = true;
-	
-	//boule_jaune.checkWorldBounds = true;
-	//boule_jaune.outOfBoundsKill = true;
-	
-	//game.physics.enable( [boule_bleu, boule_verte, boule_rouge, boule_jaune], Phaser.Physics.ARCADE);
-	
-	//game.time.events.loop(100, crea_nombre_rand, this);
-	
-
-	//game.time.events.loop(game.rnd.integerInRange(400, 3000), crea_sprite_bleu, this);
-	
-	//game.time.events.loop(game.rnd.integerInRange(600, 2000), crea_sprite_verte, this);
-	
-	//game.time.events.loop(game.rnd.integerInRange(600, 2000), crea_sprite_rouge, this);
-	
-	//game.time.events.loop(game.rnd.integerInRange(800, 2000), crea_sprite_jaune, this);
-	
-	//game.physics.enable( [sprite_test], Phaser.Physics.ARCADE);
-	
 	text = game.add.text(game.world.centerX, game.world.centerY, 'test :');
+	
+	master_group = game.add.group();
+	
 	blue_boule_group = game.add.group();
+	green_boule_group = game.add.group();
+	red_boule_group = game.add.group();
+	yellow_boule_group = game.add.group();
+	
+	
+	
 	crea_sprite_bleu();
 	
 	game.time.events.loop(1000, crea_nombre_rand, this);
 	
 	score = 1;
-	scoreText = game.add.text(game.world.centerX, game.world.centerY-50, 'score :');
+	scoreText = game.add.text(game.world.centerX, game.world.centerY-50, 'score :'+	score);
 	
+	Blue_button= game.input.keyboard.addKey(Phaser.Keyboard.A);
+	Blue_button.onDown.add(addScoreBlue, this);
 	
 	
 }
 
+function addScoreBlue () {
+	if (blue_boule_group.getChildAt(0).y>500&&blue_boule_group.getChildAt(0).y<600)
+	{
+			score+=1;
+			blue_boule_group.getChildAt(0).destroy();
+			scoreText.setText('score :' + score);
+	}
+	if (blue_boule_group.getChildAt(0).y>=600&&blue_boule_group.getChildAt(0).y<700)
+	{
+		score+=5; 
+		blue_boule_group.getChildAt(0).destroy();	
+		scoreText.setText('score :' + score);
+	}	
+}
 
 function update() {
-	
 	if (blue_boule_group.getChildAt(0).y>800)
 	{
 		blue_boule_group.getChildAt(0).destroy();
 		score-=1; 
 		scoreText.setText('score :' + score);
-	}
 	
-	
-	if (game.input.keyboard.isDown(Phaser.Keyboard.A))
-	{
-		if (blue_boule_group.getChildAt(0).y>500&&blue_boule_group.getChildAt(0).y<600)
-		{
-				score+=1;
-				blue_boule_group.getChildAt(0).destroy();
-				scoreText.setText('score :' + score);
-		}
-		if (blue_boule_group.getChildAt(0).y>=600&&blue_boule_group.getChildAt(0).y<700)
-		{
-			score+=5; 
-			blue_boule_group.getChildAt(0).destroy();	
-			scoreText.setText('score :' + score);
-		}	
-		
 	}
 }
 var random_number
 function crea_nombre_rand() {
-	random_number = game.rnd.integerInRange(1, 1) ;
+	random_number = game.rnd.integerInRange(1, 2) ;
 	text.setText('test :' + random_number);
 	if (random_number == 1)
 	{
@@ -134,21 +96,13 @@ function crea_nombre_rand() {
 	}
 }
 
-
-
-//var random_number_bleu
-
-//function crea_nombre_rand() {
-//	random_number_bleu = game.rnd.integerInRange(50, 200)/100 ; //generation de 
-//	text.setText('test :' + random_number_bleu);
-//}
-
 function crea_sprite_bleu() {
 	var boule_bleu_rand = game.add.sprite(82, -75, 'boule_bleu');
 	boule_bleu_rand.scale.setTo(1.5,1.5);
 	game.physics.enable( [boule_bleu_rand], Phaser.Physics.ARCADE);
 	boule_bleu_rand.body.gravity.y=40;
 	blue_boule_group.add(boule_bleu_rand);
+	master_group.add(blue_boule_group);
 	
 }
 
@@ -157,7 +111,8 @@ function crea_sprite_verte() {
 	boule_verte_rand.scale.setTo(1.5,1.5);
 	game.physics.enable( [boule_verte_rand], Phaser.Physics.ARCADE);
 	boule_verte_rand.body.gravity.y=40;
-	
+	green_boule_group.add(boule_verte_rand);
+	master_group.add(green_boule_group);
 }
 
 function crea_sprite_rouge() {
