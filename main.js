@@ -8,13 +8,9 @@ function preload() {
 	game.load.image('yellow_ball' , 'img/yellow_ball.png');
 	
 }
-
-
-
 var point_test
 var score
 var bouleblueKey
-
 var text
 var Blue_button
 
@@ -39,7 +35,7 @@ function create() {
 	crea_sprite_red();
 	crea_sprite_yellow();
 	
-	game.time.events.loop(1000, crea_number_rand, this);
+	game.time.events.loop(500, crea_number_rand, this);
 	
 	score = 1;
 	scoreText = game.add.text(game.world.centerX, game.world.centerY-50, 'score :'+	score);
@@ -47,15 +43,24 @@ function create() {
 	blue_button= game.input.keyboard.addKey(Phaser.Keyboard.A);
 	blue_button.onDown.add(addScoreBlue, this);
 	
+	green_button= game.input.keyboard.addKey(Phaser.Keyboard.Z);
+	green_button.onDown.add(addScoreGreen, this);
+	
+	red_button= game.input.keyboard.addKey(Phaser.Keyboard.E);
+	red_button.onDown.add(addScoreRed, this);
+	
+	yellow_button= game.input.keyboard.addKey(Phaser.Keyboard.R);
+	yellow_button.onDown.add(addScoreYellow, this);
+	
 	
 }
 
 function addScoreBlue () {
 	if (blue_ball_group.getChildAt(0).y>500&&blue_ball_group.getChildAt(0).y<600)
 	{
-			score+=1;
-			blue_ball_group.getChildAt(0).destroy();
-			scoreText.setText('score :' + score);
+		score+=1;
+		blue_ball_group.getChildAt(0).destroy();
+		scoreText.setText('score :' + score);
 	}
 	if (blue_ball_group.getChildAt(0).y>=600&&blue_ball_group.getChildAt(0).y<700)
 	{
@@ -65,7 +70,53 @@ function addScoreBlue () {
 	}	
 }
 
+function addScoreGreen () {
+	if (green_ball_group.getChildAt(0).y>500&&green_ball_group.getChildAt(0).y<600)
+	{
+		score+=1;
+		green_ball_group.getChildAt(0).destroy();
+		scoreText.setText('score :' + score);
+	}
+	if (green_ball_group.getChildAt(0).y>=600&&green_ball_group.getChildAt(0).y<700)
+	{
+		score+=5; 
+		green_ball_group.getChildAt(0).destroy();	
+		scoreText.setText('score :' + score);
+	}	
+}
+
+function addScoreRed () {
+	if (red_ball_group.getChildAt(0).y>500&&red_ball_group.getChildAt(0).y<600)
+	{
+		score+=1;
+		red_ball_group.getChildAt(0).destroy();
+		scoreText.setText('score :' + score);
+	}
+	if (red_ball_group.getChildAt(0).y>=600&&red_ball_group.getChildAt(0).y<700)
+	{
+		score+=5; 
+		red_ball_group.getChildAt(0).destroy();	
+		scoreText.setText('score :' + score);
+	}	
+}
+
+function addScoreYellow () {
+	if (yellow_ball_group.getChildAt(0).y>500&&yellow_ball_group.getChildAt(0).y<600)
+	{
+		score+=1;
+		yellow_ball_group.getChildAt(0).destroy();
+		scoreText.setText('score :' + score);
+	}
+	if (yellow_ball_group.getChildAt(0).y>=600&&yellow_ball_group.getChildAt(0).y<700)
+	{
+		score+=5; 
+		yellow_ball_group.getChildAt(0).destroy();	
+		scoreText.setText('score :' + score);
+	}	
+}
+
 function update() {
+	
 	if (blue_ball_group.getChildAt(0).y>800)
 	{
 		blue_ball_group.getChildAt(0).destroy();
@@ -73,10 +124,31 @@ function update() {
 		scoreText.setText('score :' + score);
 	
 	}
+	if (green_ball_group.getChildAt(0).y>800)
+	{
+		green_ball_group.getChildAt(0).destroy();
+		score-=1; 
+		scoreText.setText('score :' + score);
+	
+	}
+	if (red_ball_group.getChildAt(0).y>800)
+	{
+		red_ball_group.getChildAt(0).destroy();
+		score-=1; 
+		scoreText.setText('score :' + score);
+	
+	}
+	if (yellow_ball_group.getChildAt(0).y>800)
+	{
+		yellow_ball_group.getChildAt(0).destroy();
+		score-=1; 
+		scoreText.setText('score :' + score);
+	
+	}
 }
 var random_number
 function crea_number_rand() {
-	random_number = game.rnd.integerInRange(1, 2) ;
+	random_number = game.rnd.integerInRange(1, 4) ;
 	text.setText('test :' + random_number);
 	if (random_number == 1)
 	{
@@ -97,38 +169,38 @@ function crea_number_rand() {
 }
 
 function crea_sprite_blue() {
-	var blue_ball_rand = game.add.sprite(82, -75, 'blue_ball');
+	var blue_ball_rand = game.add.sprite(82, -6000, 'blue_ball');
 	blue_ball_rand.scale.setTo(1.5,1.5);
 	game.physics.enable( [blue_ball_rand], Phaser.Physics.ARCADE);
-	blue_ball_rand.body.gravity.y=40;
+	blue_ball_rand.body.gravity.y=6;
 	blue_ball_group.add(blue_ball_rand);
 	
 	
 }
 
 function crea_sprite_green() {
-	var green_ball_rand = game.add.sprite(205, -75, 'green_ball');
+	var green_ball_rand = game.add.sprite(205, -6000, 'green_ball');
 	green_ball_rand.scale.setTo(1.5,1.5);
 	game.physics.enable( [green_ball_rand], Phaser.Physics.ARCADE);
-	green_ball_rand.body.gravity.y=40;
+	green_ball_rand.body.gravity.y=6;
 	green_ball_group.add(green_ball_rand);
 	
 }
 
 function crea_sprite_red() {
-	var red_ball_rand = game.add.sprite(328, -75, 'red_ball');
+	var red_ball_rand = game.add.sprite(328, -6000, 'red_ball');
 	red_ball_rand.scale.setTo(1.5,1.5);
 	game.physics.enable( [red_ball_rand], Phaser.Physics.ARCADE);
-	red_ball_rand.body.gravity.y=40;
-	
+	red_ball_rand.body.gravity.y=6;
+	red_ball_group.add(red_ball_rand);
 }
 
 function crea_sprite_yellow() {
-	var yellow_ball_rand = game.add.sprite(450, -75, 'yellow_ball');
+	var yellow_ball_rand = game.add.sprite(450, -6000, 'yellow_ball');
 	yellow_ball_rand.scale.setTo(1.5,1.5);
 	game.physics.enable( [yellow_ball_rand], Phaser.Physics.ARCADE);
-	yellow_ball_rand.body.gravity.y=40;
-	
+	yellow_ball_rand.body.gravity.y=6;
+	yellow_ball_group.add(yellow_ball_rand);
 }
 
 
