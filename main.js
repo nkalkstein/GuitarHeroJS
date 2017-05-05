@@ -9,10 +9,7 @@ function preload() {
 	game.load.image('point_test' , 'img/sprite_test.png');
 }
 
-var boule_bleu
-var boule_rouge	
-var boule_verte
-var boule_jaune
+
 
 var point_test
 var score
@@ -75,18 +72,49 @@ function create() {
 	//game.physics.enable( [sprite_test], Phaser.Physics.ARCADE);
 	
 	text = game.add.text(game.world.centerX, game.world.centerY, 'test :');
+	blue_boule_group = game.add.group();
+	crea_sprite_bleu();
 	
 	game.time.events.loop(1000, crea_nombre_rand, this);
+	
+	score = 1;
+	scoreText = game.add.text(game.world.centerX, game.world.centerY-50, 'score :');
+	
+	
 	
 }
 
 
 function update() {
 	
+	if (blue_boule_group.getChildAt(0).y>800)
+	{
+		blue_boule_group.getChildAt(0).destroy();
+		score-=1; 
+		scoreText.setText('score :' + score);
+	}
+	
+	
+	if (game.input.keyboard.isDown(Phaser.Keyboard.A))
+	{
+		if (blue_boule_group.getChildAt(0).y>500&&blue_boule_group.getChildAt(0).y<600)
+		{
+				score+=1;
+				blue_boule_group.getChildAt(0).destroy();
+				scoreText.setText('score :' + score);
+		}
+		if (blue_boule_group.getChildAt(0).y>=600&&blue_boule_group.getChildAt(0).y<700)
+		{
+			score+=5; 
+			blue_boule_group.getChildAt(0).destroy();	
+			scoreText.setText('score :' + score);
+		}	
+		
+	}
 }
 var random_number
 function crea_nombre_rand() {
-	random_number = game.rnd.integerInRange(1, 4) ;
+	random_number = game.rnd.integerInRange(1, 1) ;
 	text.setText('test :' + random_number);
 	if (random_number == 1)
 	{
@@ -120,6 +148,7 @@ function crea_sprite_bleu() {
 	boule_bleu_rand.scale.setTo(1.5,1.5);
 	game.physics.enable( [boule_bleu_rand], Phaser.Physics.ARCADE);
 	boule_bleu_rand.body.gravity.y=40;
+	blue_boule_group.add(boule_bleu_rand);
 	
 }
 
@@ -151,7 +180,7 @@ function crea_sprite_jaune() {
 function render() {
 
     // debug info pour les boules
-   // game.debug.spriteInfo(boule_jaune, 32, 32);
+   game.debug.spriteInfo(blue_boule_group.getChildAt(0), 32, 32);
 	
 
 
