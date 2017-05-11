@@ -6,6 +6,7 @@ function preload() {
 	game.load.image('green_ball' , 'img/green_ball.png');
 	game.load.image('red_ball' , 'img/red_ball.png');
 	game.load.image('yellow_ball' , 'img/yellow_ball.png');
+	game.load.audio('validate', 'sound/validate.wav');
 	
 }
 var point_test
@@ -13,14 +14,14 @@ var score
 var bouleblueKey
 var text
 var Blue_button
-
+var var_pop_time
 function create() {
 	game.physics.startSystem(Phaser.Physics.ARCADE); //ajout de la physique
 	game.physics.arcade.gravity.y = 100;   
 
 	game.add.sprite(0,0, 'bg');
 	
-	
+	validate = game.add.audio('validate');
 	
 	text = game.add.text(game.world.centerX, game.world.centerY, 'test :');
 	
@@ -35,7 +36,8 @@ function create() {
 	crea_sprite_red();
 	crea_sprite_yellow();
 	
-	game.time.events.loop(500, crea_number_rand, this);
+	var var_pop_time = 500
+	game.time.events.loop(var_pop_time, crea_number_rand, this);
 	
 	score = 1;
 	scoreText = game.add.text(game.world.centerX, game.world.centerY-50, 'score :'+	score);
@@ -61,12 +63,14 @@ function addScoreBlue () {
 		score+=1;
 		blue_ball_group.getChildAt(0).destroy();
 		scoreText.setText('score :' + score);
+		validate.play();
 	}
 	if (blue_ball_group.getChildAt(0).y>=600&&blue_ball_group.getChildAt(0).y<700)
 	{
 		score+=5; 
 		blue_ball_group.getChildAt(0).destroy();	
 		scoreText.setText('score :' + score);
+		validate.play();
 	}	
 }
 
@@ -146,6 +150,14 @@ function update() {
 	
 	}
 }
+
+	if (score > 10) {
+		var_pop_time = 300;
+
+	}
+
+
+
 var random_number
 function crea_number_rand() {
 	random_number = game.rnd.integerInRange(1, 4) ;
@@ -209,6 +221,6 @@ function render() {
     // debug info pour les boules
    game.debug.spriteInfo(blue_ball_group.getChildAt(0), 32, 32);
 	
-
+	console.log(var_pop_time); 
 
 }
