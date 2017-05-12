@@ -37,10 +37,9 @@ function create() {
 	crea_sprite_red();
 	crea_sprite_yellow();
 	
-	var var_pop_time = 500
-	var_pop_timeText = game.add.text(game.world.centerX-250, game.world.centerY, 'poptime :', + var_pop_time);
+	var var_pop_time = 500;
 	gameLoop = game.time.events.loop(var_pop_time, crea_number_rand, this);
-	var_pop_timeText.setText('poptime:' + var_pop_time);
+
 	
 	score = 1;
 	scoreText = game.add.text(game.world.centerX, game.world.centerY-50, 'score :'+	score);
@@ -123,6 +122,12 @@ function addScoreYellow () {
 }
 
 function update() {
+	if (blue_ball_group.length === 0)
+	{
+		crea_sprite_blue();
+	
+	}else {
+	
 	
 	if (blue_ball_group.getChildAt(0).y>800)
 	{
@@ -131,6 +136,7 @@ function update() {
 		scoreText.setText('score :' + score);
 	
 	}
+		}
 	if (green_ball_group.getChildAt(0).y>800)
 	{
 		green_ball_group.getChildAt(0).destroy();
@@ -151,12 +157,11 @@ function update() {
 		score-=1; 
 		scoreText.setText('score :' + score);
 	}
-	if (score > 10) {
-		gameLoop.delay = 5 ;
-		
-		var_pop_timeText.setText('poptime:' + var_pop_time);
-
+	if (score > 1000) {
+		gameLoop.delay = 5;
+	
 	}
+	
 	
 }
 	
@@ -187,37 +192,64 @@ function crea_number_rand() {
 }
 
 function crea_sprite_blue() {
-	var blue_ball_rand = game.add.sprite(82, -6000, 'blue_ball');
+	var blue_ball_rand = game.add.sprite(82, -5000, 'blue_ball');
 	blue_ball_rand.scale.setTo(1.5,1.5);
 	game.physics.enable( [blue_ball_rand], Phaser.Physics.ARCADE);
-	blue_ball_rand.body.gravity.y=6;
+		if (blue_ball_rand.y< -2000)
+		{
+			blue_ball_rand.body.velocity.y = 1000;
+		}
+		if (blue_ball_rand.y> -2000)
+		{
+			blue_ball_rand.body.velocity.y = 200;
+		}
 	blue_ball_group.add(blue_ball_rand);
-	
 	
 }
 
 function crea_sprite_green() {
-	var green_ball_rand = game.add.sprite(205, -6000, 'green_ball');
+	var green_ball_rand = game.add.sprite(205, -5000, 'green_ball');
 	green_ball_rand.scale.setTo(1.5,1.5);
 	game.physics.enable( [green_ball_rand], Phaser.Physics.ARCADE);
-	green_ball_rand.body.gravity.y=6;
+	if (green_ball_rand.y< -2000)
+		{
+			green_ball_rand.body.velocity.y = 1000;
+		}
+		if (green_ball_rand.y> -2000)
+		{
+			green_ball_rand.body.velocity.y = 200;
+		}
 	green_ball_group.add(green_ball_rand);
 	
 }
 
 function crea_sprite_red() {
-	var red_ball_rand = game.add.sprite(328, -6000, 'red_ball');
+	var red_ball_rand = game.add.sprite(328, -5000, 'red_ball');
 	red_ball_rand.scale.setTo(1.5,1.5);
 	game.physics.enable( [red_ball_rand], Phaser.Physics.ARCADE);
-	red_ball_rand.body.gravity.y=6;
+	if (red_ball_rand.y< -2000)
+		{
+			red_ball_rand.body.velocity.y = 1000;
+		}
+		if (red_ball_rand.y> -2000)
+		{
+			red_ball_rand.body.velocity.y = 200;
+		}
 	red_ball_group.add(red_ball_rand);
 }
 
 function crea_sprite_yellow() {
-	var yellow_ball_rand = game.add.sprite(450, -6000, 'yellow_ball');
+	var yellow_ball_rand = game.add.sprite(450, -5000, 'yellow_ball');
 	yellow_ball_rand.scale.setTo(1.5,1.5);
 	game.physics.enable( [yellow_ball_rand], Phaser.Physics.ARCADE);
-	yellow_ball_rand.body.gravity.y=6;
+	if (yellow_ball_rand.y< -2000)
+		{
+			yellow_ball_rand.body.velocity.y = 1000;
+		}
+		if (yellow_ball_rand.y> -2000)
+		{
+			yellow_ball_rand.body.velocity.y = 200;
+		}
 	yellow_ball_group.add(yellow_ball_rand);
 }
 
