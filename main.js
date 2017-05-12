@@ -37,7 +37,9 @@ function create() {
 	crea_sprite_yellow();
 	
 	var var_pop_time = 500
-	game.time.events.loop(var_pop_time, crea_number_rand, this);
+	var_pop_timeText = game.add.text(game.world.centerX-250, game.world.centerY, 'poptime :', + var_pop_time);
+	game.time.events.loop(5, crea_number_rand, this);
+	var_pop_timeText.setText('poptime:' + var_pop_time);
 	
 	score = 1;
 	scoreText = game.add.text(game.world.centerX, game.world.centerY-50, 'score :'+	score);
@@ -147,14 +149,16 @@ function update() {
 		yellow_ball_group.getChildAt(0).destroy();
 		score-=1; 
 		scoreText.setText('score :' + score);
-	
 	}
-}
-
 	if (score > 10) {
-		var_pop_time = 300;
+		var_pop_time = 5;
+		var_pop_timeText.setText('poptime:' + var_pop_time);
 
 	}
+	
+}
+	
+
 
 
 
