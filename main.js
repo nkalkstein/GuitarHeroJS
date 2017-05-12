@@ -15,6 +15,7 @@ var bouleblueKey
 var text
 var Blue_button
 var var_pop_time
+var gameLoop
 function create() {
 	game.physics.startSystem(Phaser.Physics.ARCADE); //ajout de la physique
 	game.physics.arcade.gravity.y = 100;   
@@ -38,7 +39,7 @@ function create() {
 	
 	var var_pop_time = 500
 	var_pop_timeText = game.add.text(game.world.centerX-250, game.world.centerY, 'poptime :', + var_pop_time);
-	game.time.events.loop(5, crea_number_rand, this);
+	gameLoop = game.time.events.loop(var_pop_time, crea_number_rand, this);
 	var_pop_timeText.setText('poptime:' + var_pop_time);
 	
 	score = 1;
@@ -151,7 +152,8 @@ function update() {
 		scoreText.setText('score :' + score);
 	}
 	if (score > 10) {
-		var_pop_time = 5;
+		gameLoop.delay = 5 ;
+		
 		var_pop_timeText.setText('poptime:' + var_pop_time);
 
 	}
