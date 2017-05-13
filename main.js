@@ -16,6 +16,8 @@ var text
 var Blue_button
 var var_pop_time
 var gameLoop
+
+
 function create() {
 	game.physics.startSystem(Phaser.Physics.ARCADE); //ajout de la physique
 	game.physics.arcade.gravity.y = 100;   
@@ -54,6 +56,68 @@ function create() {
 	
 	
 }
+
+
+function update() {
+	if (blue_ball_group.length === 0)
+	{
+		//	nothing
+	}else {
+	
+		if (blue_ball_group.getChildAt(0).y>800)
+		{
+			blue_ball_group.getChildAt(0).destroy();
+			score-=1; 
+			scoreText.setText('score :' + score);
+		}
+	}
+	
+	if (green_ball_group.length === 0)
+	{
+		//	nothing
+	}else {
+		if (green_ball_group.getChildAt(0).y>800)
+		{
+			green_ball_group.getChildAt(0).destroy();
+			score-=1; 
+			scoreText.setText('score :' + score);
+		}
+	}
+
+	if (red_ball_group.length === 0)
+	{
+		//	nothing
+	}else {
+	
+		if (red_ball_group.getChildAt(0).y>800)
+		{
+			red_ball_group.getChildAt(0).destroy();
+			score-=1; 
+			scoreText.setText('score :' + score);
+		}
+	}
+
+	if (yellow_ball_group.length === 0)
+	{
+		//	nothing
+	}else {
+	if (yellow_ball_group.getChildAt(0).y>800)
+		{
+			yellow_ball_group.getChildAt(0).destroy();
+			score-=1; 
+			scoreText.setText('score :' + score);
+		}
+	}
+
+	if (score > 1000) {
+		gameLoop.delay = 5;
+	
+	}
+	
+	
+}
+	
+
 
 function addScoreBlue () {
 	if (blue_ball_group.length === 0)
@@ -140,68 +204,6 @@ function addScoreYellow () {
 		}	
 	}
 	}
-
-function update() {
-	if (blue_ball_group.length === 0)
-	{
-		//	nothing
-	}else {
-	
-		if (blue_ball_group.getChildAt(0).y>800)
-		{
-			blue_ball_group.getChildAt(0).destroy();
-			score-=1; 
-			scoreText.setText('score :' + score);
-		}
-	}
-	
-	if (green_ball_group.length === 0)
-	{
-		//	nothing
-	}else {
-		if (green_ball_group.getChildAt(0).y>800)
-		{
-			green_ball_group.getChildAt(0).destroy();
-			score-=1; 
-			scoreText.setText('score :' + score);
-		}
-	}
-
-	if (red_ball_group.length === 0)
-	{
-		//	nothing
-	}else {
-	
-		if (red_ball_group.getChildAt(0).y>800)
-		{
-			red_ball_group.getChildAt(0).destroy();
-			score-=1; 
-			scoreText.setText('score :' + score);
-		}
-	}
-
-	if (yellow_ball_group.length === 0)
-	{
-		//	nothing
-	}else {
-	if (yellow_ball_group.getChildAt(0).y>800)
-		{
-			yellow_ball_group.getChildAt(0).destroy();
-			score-=1; 
-			scoreText.setText('score :' + score);
-		}
-	}
-
-	if (score > 1000) {
-		gameLoop.delay = 5;
-	
-	}
-	
-	
-}
-	
-
-
 
 
 var random_number
