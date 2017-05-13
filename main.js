@@ -17,6 +17,9 @@ var Blue_button
 var var_pop_time
 var gameLoop
 
+var highscore = 0;
+var highScoreText = 0;
+
 
 function create() {
 	game.physics.startSystem(Phaser.Physics.ARCADE); //ajout de la physique
@@ -54,6 +57,12 @@ function create() {
 	yellow_button= game.input.keyboard.addKey(Phaser.Keyboard.R);
 	yellow_button.onDown.add(addScoreYellow, this);
 	
+
+
+	 highScoreText = this.game.add.text(game.world.centerX -250, game.world.centerY, 'HS: ' + highscore, {
+        font: '25px Arial',
+        fill: 'black'
+    });
 	
 }
 
@@ -113,6 +122,12 @@ function update() {
 		gameLoop.delay = 5;
 	
 	}
+
+	highScoreText.text = 'HS: ' + localStorage.getItem("highscore");
+	if (score > localStorage.getItem("highscore")) 
+        { 
+            localStorage.setItem("highscore", score);
+        }
 	
 	
 }
