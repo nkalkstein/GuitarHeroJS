@@ -1,6 +1,44 @@
 body {
-	padding: 0; margin: 0;
+	margin: 0;
+	padding: 0;
 }
+
+
+header {
+	background-image: url(http://i.imgur.com/NnzxG4S.jpg);
+	background-size: cover;
+	background-position: center;
+	height: 100vh;
+	
+	margin-bottom: 50px;
+
+	display: flex;
+	flex-direction:column;
+	justify-content:center;
+	align-items : center;
+
+
+
+
+
+}	
+
+p {
+	max-width: 600px;
+ 	margin : 0 auto 20px;
+
+}
+
+
+
+
+
+
+
+
+
+
+
 #TapTapGuitar {
 	margin: auto;
 	display: table;
