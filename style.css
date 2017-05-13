@@ -1,3 +1,17 @@
+@font-face {
+    font-family: arc;
+    src: url(font/Arciform.otf);
+}
+
+
+
+
+
+
+
+
+
+
 body {
 	margin: 0;
 	padding: 0;
@@ -21,7 +35,15 @@ header {
 
 
 
+
+
 }	
+
+
+h1 {
+	font-family: arc, monospace;
+	font-size: 6em;
+}
 
 p {
 	max-width: 600px;
