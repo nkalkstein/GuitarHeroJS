@@ -31,11 +31,7 @@ function create() {
 	red_ball_group = game.add.group();
 	yellow_ball_group = game.add.group();
 	
-	
-	crea_sprite_blue();
-	crea_sprite_green();
-	crea_sprite_red();
-	crea_sprite_yellow();
+
 	
 	var var_pop_time = 500;
 	gameLoop = game.time.events.loop(var_pop_time, crea_number_rand, this);
@@ -60,103 +56,142 @@ function create() {
 }
 
 function addScoreBlue () {
-	if (blue_ball_group.getChildAt(0).y>500&&blue_ball_group.getChildAt(0).y<600)
+	if (blue_ball_group.length === 0)
 	{
-		score+=1;
-		blue_ball_group.getChildAt(0).destroy();
-		scoreText.setText('score :' + score);
-		validate.play();
-	}
-	if (blue_ball_group.getChildAt(0).y>=600&&blue_ball_group.getChildAt(0).y<700)
-	{
-		score+=5; 
-		blue_ball_group.getChildAt(0).destroy();	
-		scoreText.setText('score :' + score);
-		validate.play();
-	}	
-}
+		//	nothing
+	}else {
 
-function addScoreGreen () {
-	if (green_ball_group.getChildAt(0).y>500&&green_ball_group.getChildAt(0).y<600)
-	{
-		score+=1;
-		green_ball_group.getChildAt(0).destroy();
-		scoreText.setText('score :' + score);
+		if (blue_ball_group.getChildAt(0).y>500&&blue_ball_group.getChildAt(0).y<600)
+		{
+			score+=1;
+			blue_ball_group.getChildAt(0).destroy();
+			scoreText.setText('score :' + score);
+			validate.play();
+		}
+		if (blue_ball_group.getChildAt(0).y>=600&&blue_ball_group.getChildAt(0).y<700)
+		{
+			score+=5; 
+			blue_ball_group.getChildAt(0).destroy();	
+			scoreText.setText('score :' + score);
+			validate.play();
+		}	
 	}
-	if (green_ball_group.getChildAt(0).y>=600&&green_ball_group.getChildAt(0).y<700)
+	}
+function addScoreGreen () {
+	if (green_ball_group.length === 0)
 	{
-		score+=5; 
-		green_ball_group.getChildAt(0).destroy();	
-		scoreText.setText('score :' + score);
-	}	
+		//	nothing
+	}else {
+
+
+		if (green_ball_group.getChildAt(0).y>500&&green_ball_group.getChildAt(0).y<600)
+		{
+			score+=1;
+			green_ball_group.getChildAt(0).destroy();
+			scoreText.setText('score :' + score);
+		}
+		if (green_ball_group.getChildAt(0).y>=600&&green_ball_group.getChildAt(0).y<700)
+		{
+			score+=5; 
+			green_ball_group.getChildAt(0).destroy();	
+			scoreText.setText('score :' + score);
+		}	
+	}
 }
 
 function addScoreRed () {
-	if (red_ball_group.getChildAt(0).y>500&&red_ball_group.getChildAt(0).y<600)
+	if (red_ball_group.length === 0)
 	{
-		score+=1;
-		red_ball_group.getChildAt(0).destroy();
-		scoreText.setText('score :' + score);
-	}
-	if (red_ball_group.getChildAt(0).y>=600&&red_ball_group.getChildAt(0).y<700)
-	{
-		score+=5; 
-		red_ball_group.getChildAt(0).destroy();	
-		scoreText.setText('score :' + score);
-	}	
-}
+		//	nothing
+	}else {
 
-function addScoreYellow () {
-	if (yellow_ball_group.getChildAt(0).y>500&&yellow_ball_group.getChildAt(0).y<600)
-	{
-		score+=1;
-		yellow_ball_group.getChildAt(0).destroy();
-		scoreText.setText('score :' + score);
+		if (red_ball_group.getChildAt(0).y>500&&red_ball_group.getChildAt(0).y<600)
+		{
+			score+=1;
+			red_ball_group.getChildAt(0).destroy();
+			scoreText.setText('score :' + score);
+		}
+		if (red_ball_group.getChildAt(0).y>=600&&red_ball_group.getChildAt(0).y<700)
+		{
+			score+=5; 
+			red_ball_group.getChildAt(0).destroy();	
+			scoreText.setText('score :' + score);
+		}	
 	}
-	if (yellow_ball_group.getChildAt(0).y>=600&&yellow_ball_group.getChildAt(0).y<700)
+	}
+function addScoreYellow () {
+	if (yellow_ball_group.length === 0)
 	{
-		score+=5; 
-		yellow_ball_group.getChildAt(0).destroy();	
-		scoreText.setText('score :' + score);
-	}	
-}
+		//	nothing
+	}else {
+
+	
+		if (yellow_ball_group.getChildAt(0).y>500&&yellow_ball_group.getChildAt(0).y<600)
+		{
+			score+=1;
+			yellow_ball_group.getChildAt(0).destroy();
+			scoreText.setText('score :' + score);
+		}
+		if (yellow_ball_group.getChildAt(0).y>=600&&yellow_ball_group.getChildAt(0).y<700)
+		{
+			score+=5; 
+			yellow_ball_group.getChildAt(0).destroy();	
+			scoreText.setText('score :' + score);
+		}	
+	}
+	}
 
 function update() {
 	if (blue_ball_group.length === 0)
 	{
-		crea_sprite_blue();
-	
+		//	nothing
 	}else {
 	
-	
-	if (blue_ball_group.getChildAt(0).y>800)
-	{
-		blue_ball_group.getChildAt(0).destroy();
-		score-=1; 
-		scoreText.setText('score :' + score);
-	
-	}
+		if (blue_ball_group.getChildAt(0).y>800)
+		{
+			blue_ball_group.getChildAt(0).destroy();
+			score-=1; 
+			scoreText.setText('score :' + score);
 		}
-	if (green_ball_group.getChildAt(0).y>800)
-	{
-		green_ball_group.getChildAt(0).destroy();
-		score-=1; 
-		scoreText.setText('score :' + score);
-	
 	}
-	if (red_ball_group.getChildAt(0).y>800)
-	{
-		red_ball_group.getChildAt(0).destroy();
-		score-=1; 
-		scoreText.setText('score :' + score);
 	
+	if (green_ball_group.length === 0)
+	{
+		//	nothing
+	}else {
+		if (green_ball_group.getChildAt(0).y>800)
+		{
+			green_ball_group.getChildAt(0).destroy();
+			score-=1; 
+			scoreText.setText('score :' + score);
+		}
 	}
+
+	if (red_ball_group.length === 0)
+	{
+		//	nothing
+	}else {
+	
+		if (red_ball_group.getChildAt(0).y>800)
+		{
+			red_ball_group.getChildAt(0).destroy();
+			score-=1; 
+			scoreText.setText('score :' + score);
+		}
+	}
+
+	if (yellow_ball_group.length === 0)
+	{
+		//	nothing
+	}else {
 	if (yellow_ball_group.getChildAt(0).y>800)
-	{
-		yellow_ball_group.getChildAt(0).destroy();
-		score-=1; 
-		scoreText.setText('score :' + score);
+		{
+			yellow_ball_group.getChildAt(0).destroy();
+			score-=1; 
+			scoreText.setText('score :' + score);
+		}
 	}
+
 	if (score > 1000) {
 		gameLoop.delay = 5;
 	
@@ -257,8 +292,5 @@ function crea_sprite_yellow() {
 function render() {
 
     // debug info pour les boules
-   game.debug.spriteInfo(blue_ball_group.getChildAt(0), 32, 32);
-	
-	console.log(var_pop_time); 
 
 }
