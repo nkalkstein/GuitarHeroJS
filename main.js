@@ -244,64 +244,36 @@ function crea_number_rand() {
 }
 
 function crea_sprite_blue() {
-	var blue_ball_rand = game.add.sprite(82, -5000, 'blue_ball');
+	var blue_ball_rand = game.add.sprite(82, -400, 'blue_ball');
 	blue_ball_rand.scale.setTo(1.5,1.5);
 	game.physics.enable( [blue_ball_rand], Phaser.Physics.ARCADE);
-		if (blue_ball_rand.y< -2000)
-		{
-			blue_ball_rand.body.velocity.y = 1000;
-		}
-		if (blue_ball_rand.y> -2000)
-		{
-			blue_ball_rand.body.velocity.y = 200;
-		}
+	blue_ball_rand.body.velocity.y = 300;
 	blue_ball_group.add(blue_ball_rand);
 	
 }
 
 function crea_sprite_green() {
-	var green_ball_rand = game.add.sprite(205, -5000, 'green_ball');
+	var green_ball_rand = game.add.sprite(205, -400, 'green_ball');
 	green_ball_rand.scale.setTo(1.5,1.5);
 	game.physics.enable( [green_ball_rand], Phaser.Physics.ARCADE);
-	if (green_ball_rand.y< -2000)
-		{
-			green_ball_rand.body.velocity.y = 1000;
-		}
-		if (green_ball_rand.y> -2000)
-		{
-			green_ball_rand.body.velocity.y = 200;
-		}
+	green_ball_rand.body.velocity.y = 300;
 	green_ball_group.add(green_ball_rand);
 	
 }
 
 function crea_sprite_red() {
-	var red_ball_rand = game.add.sprite(328, -5000, 'red_ball');
+	var red_ball_rand = game.add.sprite(328, -400, 'red_ball');
 	red_ball_rand.scale.setTo(1.5,1.5);
 	game.physics.enable( [red_ball_rand], Phaser.Physics.ARCADE);
-	if (red_ball_rand.y< -2000)
-		{
-			red_ball_rand.body.velocity.y = 1000;
-		}
-		if (red_ball_rand.y> -2000)
-		{
-			red_ball_rand.body.velocity.y = 200;
-		}
+	red_ball_rand.body.velocity.y = 300;
 	red_ball_group.add(red_ball_rand);
 }
 
 function crea_sprite_yellow() {
-	var yellow_ball_rand = game.add.sprite(450, -5000, 'yellow_ball');
+	var yellow_ball_rand = game.add.sprite(450, -400, 'yellow_ball');
 	yellow_ball_rand.scale.setTo(1.5,1.5);
 	game.physics.enable( [yellow_ball_rand], Phaser.Physics.ARCADE);
-	if (yellow_ball_rand.y< -2000)
-		{
-			yellow_ball_rand.body.velocity.y = 1000;
-		}
-		if (yellow_ball_rand.y> -2000)
-		{
-			yellow_ball_rand.body.velocity.y = 200;
-		}
+	yellow_ball_rand.body.velocity.y = 300;
 	yellow_ball_group.add(yellow_ball_rand);
 }
 
