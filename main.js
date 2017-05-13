@@ -8,6 +8,8 @@ function preload() {
 	game.load.image('yellow_ball' , 'img/yellow_ball.png');
 	game.load.audio('validate', 'sound/validate.wav');
 	
+
+	
 }
 var point_test
 var score
@@ -17,11 +19,16 @@ var Blue_button
 var var_pop_time
 var gameLoop
 
+
+
+
 var highscore = 0;
 var highScoreText = 0;
 
 
 function create() {
+	
+	
 	game.physics.startSystem(Phaser.Physics.ARCADE); //ajout de la physique
 	game.physics.arcade.gravity.y = 100;   
 
@@ -38,7 +45,8 @@ function create() {
 	
 
 	
-	var var_pop_time = 500;
+	var_pop_time = 800;
+	popText = game.add.text(game.world.centerX-50, game.world.centerY-100, 'pop :'+	var_pop_time);
 	gameLoop = game.time.events.loop(var_pop_time, crea_number_rand, this);
 
 	
@@ -63,7 +71,6 @@ function create() {
         font: '25px Arial',
         fill: 'black'
     });
-	
 }
 
 
@@ -117,24 +124,25 @@ function update() {
 			scoreText.setText('score :' + score);
 		}
 	}
-
-	if (score > 1000) {
-		gameLoop.delay = 5;
 	
-	}
-
+	
+	popText.setText('pop:' + var_pop_time); // +1point = -1 pop_time  and  +5points = -5 pop_time ( check function addScore for every ball)
+	gameLoop.delay = var_pop_time;
+	
 	highScoreText.text = 'HS: ' + localStorage.getItem("highscore");
 	if (score > localStorage.getItem("highscore")) 
-        { 
-            localStorage.setItem("highscore", score);
-        }
+    {
+		localStorage.setItem("highscore", score);
+    }
 	
-	
+	if (score < -1){
+		game.state.restart(); 
+}
+
 }
 	
-
-
 function addScoreBlue () {
+	
 	if (blue_ball_group.length === 0)
 	{
 		//	nothing
@@ -146,6 +154,7 @@ function addScoreBlue () {
 			blue_ball_group.getChildAt(0).destroy();
 			scoreText.setText('score :' + score);
 			validate.play();
+			var_pop_time -=1;
 		}
 		if (blue_ball_group.getChildAt(0).y>=600&&blue_ball_group.getChildAt(0).y<700)
 		{
@@ -153,9 +162,11 @@ function addScoreBlue () {
 			blue_ball_group.getChildAt(0).destroy();	
 			scoreText.setText('score :' + score);
 			validate.play();
+			var_pop_time -=5;
 		}	
 	}
-	}
+}
+	
 function addScoreGreen () {
 	if (green_ball_group.length === 0)
 	{
@@ -168,12 +179,14 @@ function addScoreGreen () {
 			score+=1;
 			green_ball_group.getChildAt(0).destroy();
 			scoreText.setText('score :' + score);
+			var_pop_time -=1;
 		}
 		if (green_ball_group.getChildAt(0).y>=600&&green_ball_group.getChildAt(0).y<700)
 		{
 			score+=5; 
 			green_ball_group.getChildAt(0).destroy();	
 			scoreText.setText('score :' + score);
+			var_pop_time -=5;
 		}	
 	}
 }
@@ -189,15 +202,18 @@ function addScoreRed () {
 			score+=1;
 			red_ball_group.getChildAt(0).destroy();
 			scoreText.setText('score :' + score);
+			var_pop_time -=1;
 		}
 		if (red_ball_group.getChildAt(0).y>=600&&red_ball_group.getChildAt(0).y<700)
 		{
 			score+=5; 
 			red_ball_group.getChildAt(0).destroy();	
 			scoreText.setText('score :' + score);
+			var_pop_time -=5;
 		}	
 	}
-	}
+}
+
 function addScoreYellow () {
 	if (yellow_ball_group.length === 0)
 	{
@@ -210,15 +226,17 @@ function addScoreYellow () {
 			score+=1;
 			yellow_ball_group.getChildAt(0).destroy();
 			scoreText.setText('score :' + score);
+			var_pop_time -=1;
 		}
 		if (yellow_ball_group.getChildAt(0).y>=600&&yellow_ball_group.getChildAt(0).y<700)
 		{
 			score+=5; 
 			yellow_ball_group.getChildAt(0).destroy();	
 			scoreText.setText('score :' + score);
+			var_pop_time -=5;
 		}	
 	}
-	}
+}
 
 
 var random_number
@@ -283,3 +301,4 @@ function render() {
     // debug info pour les boules
 
 }
+
