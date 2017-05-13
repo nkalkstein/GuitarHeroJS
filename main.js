@@ -1,4 +1,4 @@
-var game = new Phaser.Game(600, 800, Phaser.AUTO, 'GuitarHeroJSGame', { preload: preload, create: create, update: update, render:render   });
+var game = new Phaser.Game(600, 800, Phaser.AUTO, 'TapTapGuitar', { preload: preload, create: create, update: update, render:render   });
 
 function preload() {
 	game.load.image('bg' , 'img/background.png');
