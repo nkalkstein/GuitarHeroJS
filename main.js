@@ -7,7 +7,7 @@ function preload() {
 	game.load.image('red_ball' , 'img/red_ball.png');
 	game.load.image('yellow_ball' , 'img/yellow_ball.png');
 	game.load.audio('validate', 'sound/validate.wav');
-	
+	game.load.audio('miss', 'sound/miss.wav');
 
 	
 }
@@ -35,6 +35,7 @@ function create() {
 	game.add.sprite(0,0, 'bg');
 	
 	validate = game.add.audio('validate');
+	miss = game.add.audio('miss');
 	
 	text = game.add.text(game.world.centerX, game.world.centerY, 'test :');
 	
@@ -49,6 +50,14 @@ function create() {
 	popText = game.add.text(game.world.centerX-50, game.world.centerY-100, 'pop :'+	var_pop_time);
 	gameLoop = game.time.events.loop(var_pop_time, crea_number_rand, this);
 
+	niceText = game.add.text(230, 60, 'NICE !', {font: '50px Arial',fill: 'green'});
+	goodText = game.add.text(230, 100, 'GOOD !', {font: '50px Arial',fill: 'yellow'});
+	missText = game.add.text(230, 140, 'MISS !', {font: '50px Arial',fill: 'red'});
+	
+	niceText.visible = false;
+	goodText.visible = false;
+	missText.visible = false;
+	
 	
 	score = 1;
 	scoreText = game.add.text(game.world.centerX, game.world.centerY-50, 'score :'+	score);
@@ -85,6 +94,9 @@ function update() {
 			blue_ball_group.getChildAt(0).destroy();
 			score-=1; 
 			scoreText.setText('score :' + score);
+ 			game.time.events.add(0, showMissText, this);
+			miss.play();
+			
 		}
 	}
 	
@@ -97,6 +109,8 @@ function update() {
 			green_ball_group.getChildAt(0).destroy();
 			score-=1; 
 			scoreText.setText('score :' + score);
+			game.time.events.add(0, showMissText, this);
+			miss.play();
 		}
 	}
 
@@ -110,6 +124,8 @@ function update() {
 			red_ball_group.getChildAt(0).destroy();
 			score-=1; 
 			scoreText.setText('score :' + score);
+			game.time.events.add(0, showMissText, this);
+			miss.play();
 		}
 	}
 
@@ -122,6 +138,8 @@ function update() {
 			yellow_ball_group.getChildAt(0).destroy();
 			score-=1; 
 			scoreText.setText('score :' + score);
+			game.time.events.add(0, showMissText, this);
+			miss.play();
 		}
 	}
 	
@@ -153,6 +171,7 @@ function addScoreBlue () {
 			score+=1;
 			blue_ball_group.getChildAt(0).destroy();
 			scoreText.setText('score :' + score);
+			game.time.events.add(0, showGoodText, this);
 			validate.play();
 			var_pop_time -=1;
 		}
@@ -161,6 +180,7 @@ function addScoreBlue () {
 			score+=5; 
 			blue_ball_group.getChildAt(0).destroy();	
 			scoreText.setText('score :' + score);
+			game.time.events.add(0, showNiceText, this);
 			validate.play();
 			var_pop_time -=5;
 		}	
@@ -179,6 +199,7 @@ function addScoreGreen () {
 			score+=1;
 			green_ball_group.getChildAt(0).destroy();
 			scoreText.setText('score :' + score);
+			game.time.events.add(0, showGoodText, this);
 			var_pop_time -=1;
 		}
 		if (green_ball_group.getChildAt(0).y>=600&&green_ball_group.getChildAt(0).y<700)
@@ -186,6 +207,7 @@ function addScoreGreen () {
 			score+=5; 
 			green_ball_group.getChildAt(0).destroy();	
 			scoreText.setText('score :' + score);
+			game.time.events.add(0, showNiceText, this);
 			var_pop_time -=5;
 		}	
 	}
@@ -202,6 +224,7 @@ function addScoreRed () {
 			score+=1;
 			red_ball_group.getChildAt(0).destroy();
 			scoreText.setText('score :' + score);
+			game.time.events.add(0, showGoodText, this);
 			var_pop_time -=1;
 		}
 		if (red_ball_group.getChildAt(0).y>=600&&red_ball_group.getChildAt(0).y<700)
@@ -209,6 +232,7 @@ function addScoreRed () {
 			score+=5; 
 			red_ball_group.getChildAt(0).destroy();	
 			scoreText.setText('score :' + score);
+			game.time.events.add(0, showNiceText, this);
 			var_pop_time -=5;
 		}	
 	}
@@ -226,6 +250,7 @@ function addScoreYellow () {
 			score+=1;
 			yellow_ball_group.getChildAt(0).destroy();
 			scoreText.setText('score :' + score);
+			game.time.events.add(0, showGoodText, this);
 			var_pop_time -=1;
 		}
 		if (yellow_ball_group.getChildAt(0).y>=600&&yellow_ball_group.getChildAt(0).y<700)
@@ -233,9 +258,25 @@ function addScoreYellow () {
 			score+=5; 
 			yellow_ball_group.getChildAt(0).destroy();	
 			scoreText.setText('score :' + score);
+			game.time.events.add(0, showNiceText, this);
 			var_pop_time -=5;
 		}	
 	}
+}
+
+function showMissText() {
+	missText.visible = true;
+	setTimeout(function(){missText.visible = false;}, 600); 
+}
+
+function showNiceText() {
+	niceText.visible = true;
+	setTimeout(function(){niceText.visible = false;}, 600); 
+}
+
+function showGoodText() {
+	goodText.visible = true;
+	setTimeout(function(){goodText.visible = false;}, 600); 
 }
 
 
