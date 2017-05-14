@@ -80,11 +80,21 @@ function create() {
 	start_game_key.onDown.add(gameStart, this);
 	
 	startText = game.add.text(2, 550, '-Press Space bar to start !-', {font: '50px Arial',fill: 'white'});
+	
+	gameOverText = game.add.text(100, 350, 'GAME OVER ', {font: '70px Arial',fill: 'white'});
+	gameOverText.visible = false;
+	
+	
+	restart_game_key = game.input.keyboard.addKey(Phaser.Keyboard.ENTER);
+	restart_game_key.onDown.add(update, this);
+	
+	restartText = game.add.text(2, 550, '-Press ENTER to restart !-', {font: '50px Arial',fill: 'white'});
+	restartText.visible = false;
 }
 
 function gameStart() {
 	startText.visible = true;
-	setTimeout(function(){startText.visible = false;}, 200);
+	setTimeout(function(){startText.visible = false;}, 400);
 	game.paused = false ; 
 }
 
@@ -159,8 +169,18 @@ function update() {
 		localStorage.setItem("highscore", score);
     }
 	
-	if (score < -1){
-		game.state.restart(); 
+	if (score <= -1)
+	{
+		gameOverText.visible = true;
+		game.paused = true;
+		restartText.visible = true; 
+		
+		if (restart_game_key.isDown)
+		{
+			game.paused = false;
+			game.state.restart();
+		}
+		
 	}
 	
 	
