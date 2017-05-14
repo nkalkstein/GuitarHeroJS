@@ -93,9 +93,16 @@ function create() {
 }
 
 function gameStart() {
+	if (score == 1 )
+	{
 	startText.visible = true;
 	setTimeout(function(){startText.visible = false;}, 400);
-	game.paused = false ; 
+	game.paused = false ;
+	}
+	else 
+	{ 
+		startText.visible = false;
+	}
 }
 
 
