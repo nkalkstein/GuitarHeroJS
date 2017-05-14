@@ -11,16 +11,12 @@ function preload() {
 
 	
 }
-var point_test
+
 var score
-var bouleblueKey
 var text
 var Blue_button
 var var_pop_time
 var gameLoop
-
-
-
 
 var highscore = 0;
 var highScoreText = 0;
@@ -43,8 +39,6 @@ function create() {
 	green_ball_group = game.add.group();
 	red_ball_group = game.add.group();
 	yellow_ball_group = game.add.group();
-	
-
 	
 	var_pop_time = 800;
 	popText = game.add.text(game.world.centerX-50, game.world.centerY-100, 'pop :'+	var_pop_time);
@@ -80,6 +74,18 @@ function create() {
         font: '25px Arial',
         fill: 'black'
     });
+	
+	game.paused = true ; 
+	start_game_key = game.input.keyboard.addKey(Phaser.Keyboard.SPACEBAR);
+	start_game_key.onDown.add(gameStart, this);
+	
+	startText = game.add.text(2, 550, '-Press Space bar to start !-', {font: '50px Arial',fill: 'white'});
+}
+
+function gameStart() {
+	startText.visible = true;
+	setTimeout(function(){startText.visible = false;}, 200);
+	game.paused = false ; 
 }
 
 
@@ -155,7 +161,9 @@ function update() {
 	
 	if (score < -1){
 		game.state.restart(); 
-}
+	}
+	
+	
 
 }
 	
@@ -182,7 +190,7 @@ function addScoreBlue () {
 			scoreText.setText('score :' + score);
 			game.time.events.add(0, showNiceText, this);
 			validate.play();
-			var_pop_time -=5;
+			var_pop_time -=1;
 		}	
 	}
 }
@@ -208,7 +216,7 @@ function addScoreGreen () {
 			green_ball_group.getChildAt(0).destroy();	
 			scoreText.setText('score :' + score);
 			game.time.events.add(0, showNiceText, this);
-			var_pop_time -=5;
+			var_pop_time -=1;
 		}	
 	}
 }
@@ -233,7 +241,7 @@ function addScoreRed () {
 			red_ball_group.getChildAt(0).destroy();	
 			scoreText.setText('score :' + score);
 			game.time.events.add(0, showNiceText, this);
-			var_pop_time -=5;
+			var_pop_time -=1;
 		}	
 	}
 }
@@ -259,7 +267,7 @@ function addScoreYellow () {
 			yellow_ball_group.getChildAt(0).destroy();	
 			scoreText.setText('score :' + score);
 			game.time.events.add(0, showNiceText, this);
-			var_pop_time -=5;
+			var_pop_time -=1;
 		}	
 	}
 }
