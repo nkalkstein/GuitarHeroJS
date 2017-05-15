@@ -17,6 +17,7 @@ var text
 var Blue_button
 var var_pop_time
 var gameLoop
+var velocity_all_ball
 
 var highscore = 0;
 var highScoreText = 0;
@@ -44,6 +45,9 @@ function create() {
 	popText = game.add.text(game.world.centerX-50, game.world.centerY-100, 'pop :'+	var_pop_time);
 	gameLoop = game.time.events.loop(var_pop_time, crea_number_rand, this);
 
+	velocity_all_ball = 300;
+	
+	
 	niceText = game.add.text(230, 60, 'NICE !', {font: '50px Arial',fill: 'green'});
 	goodText = game.add.text(230, 100, 'GOOD !', {font: '50px Arial',fill: 'yellow'});
 	missText = game.add.text(230, 140, 'MISS !', {font: '50px Arial',fill: 'red'});
@@ -68,9 +72,7 @@ function create() {
 	yellow_button= game.input.keyboard.addKey(Phaser.Keyboard.R);
 	yellow_button.onDown.add(addScoreYellow, this);
 	
-
-
-	 highScoreText = this.game.add.text(game.world.centerX -250, game.world.centerY, 'HS: ' + highscore, {
+	highScoreText = this.game.add.text(game.world.centerX -250, game.world.centerY, 'HS: ' + highscore, {
         font: '25px Arial',
         fill: 'black'
     });
@@ -86,14 +88,14 @@ function create() {
 	
 	
 	restart_game_key = game.input.keyboard.addKey(Phaser.Keyboard.ENTER);
-	restart_game_key.onDown.add(update, this);
-	
+	restart_game_key.onDown.add(gameRestart,this);
+		
 	restartText = game.add.text(2, 550, '-Press ENTER to restart !-', {font: '50px Arial',fill: 'white'});
 	restartText.visible = false;
 }
 
 function gameStart() {
-	if (score == 1 )
+	if (score == 1)
 	{
 	startText.visible = true;
 	setTimeout(function(){startText.visible = false;}, 400);
@@ -102,6 +104,15 @@ function gameStart() {
 	else 
 	{ 
 		startText.visible = false;
+	}
+}
+
+function gameRestart(){
+	
+	if (restart_game_key.isDown)
+	{
+		game.paused = false;
+		game.state.restart();
 	}
 }
 
@@ -119,7 +130,9 @@ function update() {
 			scoreText.setText('score :' + score);
  			game.time.events.add(0, showMissText, this);
 			miss.play();
-			
+			gameOverText.visible = true;
+			game.paused = true;
+			restartText.visible = true;
 		}
 	}
 	
@@ -134,7 +147,12 @@ function update() {
 			scoreText.setText('score :' + score);
 			game.time.events.add(0, showMissText, this);
 			miss.play();
+			gameOverText.visible = true;
+			game.paused = true;
+			restartText.visible = true; 
 		}
+		
+	
 	}
 
 	if (red_ball_group.length === 0)
@@ -149,7 +167,11 @@ function update() {
 			scoreText.setText('score :' + score);
 			game.time.events.add(0, showMissText, this);
 			miss.play();
+			gameOverText.visible = true;
+			game.paused = true;
+			restartText.visible = true; 
 		}
+		
 	}
 
 	if (yellow_ball_group.length === 0)
@@ -163,6 +185,9 @@ function update() {
 			scoreText.setText('score :' + score);
 			game.time.events.add(0, showMissText, this);
 			miss.play();
+			gameOverText.visible = true;
+			game.paused = true;
+			restartText.visible = true; 
 		}
 	}
 	
@@ -176,22 +201,7 @@ function update() {
 		localStorage.setItem("highscore", score);
     }
 	
-	if (score <= -1)
-	{
-		gameOverText.visible = true;
-		game.paused = true;
-		restartText.visible = true; 
-		
-		if (restart_game_key.isDown)
-		{
-			game.paused = false;
-			game.state.restart();
-		}
-		
-	}
 	
-	
-
 }
 	
 function addScoreBlue () {
@@ -209,6 +219,8 @@ function addScoreBlue () {
 			game.time.events.add(0, showGoodText, this);
 			validate.play();
 			var_pop_time -=1;
+			velocity_all_ball += 10;
+			
 		}
 		if (blue_ball_group.getChildAt(0).y>=600&&blue_ball_group.getChildAt(0).y<700)
 		{
@@ -218,6 +230,7 @@ function addScoreBlue () {
 			game.time.events.add(0, showNiceText, this);
 			validate.play();
 			var_pop_time -=1;
+			velocity_all_ball += 10;
 		}	
 	}
 }
@@ -236,6 +249,7 @@ function addScoreGreen () {
 			scoreText.setText('score :' + score);
 			game.time.events.add(0, showGoodText, this);
 			var_pop_time -=1;
+			velocity_all_ball += 10;
 		}
 		if (green_ball_group.getChildAt(0).y>=600&&green_ball_group.getChildAt(0).y<700)
 		{
@@ -244,6 +258,7 @@ function addScoreGreen () {
 			scoreText.setText('score :' + score);
 			game.time.events.add(0, showNiceText, this);
 			var_pop_time -=1;
+			velocity_all_ball += 10;
 		}	
 	}
 }
@@ -261,6 +276,7 @@ function addScoreRed () {
 			scoreText.setText('score :' + score);
 			game.time.events.add(0, showGoodText, this);
 			var_pop_time -=1;
+			velocity_all_ball += 10;
 		}
 		if (red_ball_group.getChildAt(0).y>=600&&red_ball_group.getChildAt(0).y<700)
 		{
@@ -269,6 +285,7 @@ function addScoreRed () {
 			scoreText.setText('score :' + score);
 			game.time.events.add(0, showNiceText, this);
 			var_pop_time -=1;
+			velocity_all_ball += 10;
 		}	
 	}
 }
@@ -287,6 +304,7 @@ function addScoreYellow () {
 			scoreText.setText('score :' + score);
 			game.time.events.add(0, showGoodText, this);
 			var_pop_time -=1;
+			velocity_all_ball += 10;
 		}
 		if (yellow_ball_group.getChildAt(0).y>=600&&yellow_ball_group.getChildAt(0).y<700)
 		{
@@ -295,6 +313,7 @@ function addScoreYellow () {
 			scoreText.setText('score :' + score);
 			game.time.events.add(0, showNiceText, this);
 			var_pop_time -=1;
+			velocity_all_ball += 10;
 		}	
 	}
 }
@@ -341,7 +360,7 @@ function crea_sprite_blue() {
 	var blue_ball_rand = game.add.sprite(82, -400, 'blue_ball');
 	blue_ball_rand.scale.setTo(1.5,1.5);
 	game.physics.enable( [blue_ball_rand], Phaser.Physics.ARCADE);
-	blue_ball_rand.body.velocity.y = 300;
+	blue_ball_rand.body.velocity.y = velocity_all_ball;
 	blue_ball_group.add(blue_ball_rand);
 	
 }
@@ -350,7 +369,7 @@ function crea_sprite_green() {
 	var green_ball_rand = game.add.sprite(205, -400, 'green_ball');
 	green_ball_rand.scale.setTo(1.5,1.5);
 	game.physics.enable( [green_ball_rand], Phaser.Physics.ARCADE);
-	green_ball_rand.body.velocity.y = 300;
+	green_ball_rand.body.velocity.y = velocity_all_ball;
 	green_ball_group.add(green_ball_rand);
 	
 }
@@ -359,7 +378,7 @@ function crea_sprite_red() {
 	var red_ball_rand = game.add.sprite(328, -400, 'red_ball');
 	red_ball_rand.scale.setTo(1.5,1.5);
 	game.physics.enable( [red_ball_rand], Phaser.Physics.ARCADE);
-	red_ball_rand.body.velocity.y = 300;
+	red_ball_rand.body.velocity.y = velocity_all_ball;
 	red_ball_group.add(red_ball_rand);
 }
 
@@ -367,7 +386,7 @@ function crea_sprite_yellow() {
 	var yellow_ball_rand = game.add.sprite(450, -400, 'yellow_ball');
 	yellow_ball_rand.scale.setTo(1.5,1.5);
 	game.physics.enable( [yellow_ball_rand], Phaser.Physics.ARCADE);
-	yellow_ball_rand.body.velocity.y = 300;
+	yellow_ball_rand.body.velocity.y = velocity_all_ball;
 	yellow_ball_group.add(yellow_ball_rand);
 }
 
