@@ -18,14 +18,11 @@ var Blue_button
 var var_pop_time
 var gameLoop
 var velocity_all_ball
-
 var highscore = 0;
 var highScoreText = 0;
 
 
 function create() {
-	
-	
 	game.physics.startSystem(Phaser.Physics.ARCADE); //ajout de la physique
 	game.physics.arcade.gravity.y = 100;   
 
@@ -210,7 +207,7 @@ function addScoreBlue () {
 	{
 		//	nothing
 	}else {
-
+		
 		if (blue_ball_group.getChildAt(0).y>500&&blue_ball_group.getChildAt(0).y<600)
 		{
 			score+=1;
@@ -232,6 +229,12 @@ function addScoreBlue () {
 			var_pop_time -=1;
 			velocity_all_ball += 10;
 		}	
+		if (red_ball_group.getChildAt(0).y<500)
+		{
+			score -=1;
+			scoreText.setText('score :' + score);
+		}
+	
 	}
 }
 	
@@ -260,6 +263,12 @@ function addScoreGreen () {
 			var_pop_time -=1;
 			velocity_all_ball += 10;
 		}	
+		if (red_ball_group.getChildAt(0).y<500)
+		{
+			score -=1;
+			scoreText.setText('score :' + score);
+			
+		}
 	}
 }
 
@@ -287,7 +296,14 @@ function addScoreRed () {
 			var_pop_time -=1;
 			velocity_all_ball += 10;
 		}	
+		if (red_ball_group.getChildAt(0).y<500)
+		{
+			score -=1;
+			scoreText.setText('score :' + score);
+			
+		}
 	}
+	
 }
 
 function addScoreYellow () {
@@ -315,6 +331,12 @@ function addScoreYellow () {
 			var_pop_time -=1;
 			velocity_all_ball += 10;
 		}	
+		if (red_ball_group.getChildAt(0).y<500)
+		{
+			score -=1;
+			scoreText.setText('score :' + score);
+			
+		}
 	}
 }
 
