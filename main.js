@@ -1,7 +1,7 @@
 var game = new Phaser.Game(600, 800, Phaser.AUTO, 'TapTapGuitar', { preload: preload, create: create, update: update, render:render   });
 
 function preload() {
-	game.load.image('bg' , 'img/background2.2.png');
+	game.load.image('bg' , 'img/background.png');
 	game.load.image('blue_ball' , 'img/blue_ball.png');
 	game.load.image('green_ball' , 'img/green_ball.png');
 	game.load.image('red_ball' , 'img/red_ball.png');
