@@ -13,8 +13,8 @@ function preload() {
 }
 
 var score
-var text
-var Blue_button
+
+
 var var_pop_time
 var gameLoop
 var velocity_all_ball
@@ -30,29 +30,24 @@ function create() {
 	
 	validate = game.add.audio('validate');
 	miss = game.add.audio('miss');
-	
-	
-	
+
 	blue_ball_group = game.add.group();
 	green_ball_group = game.add.group();
 	red_ball_group = game.add.group();
 	yellow_ball_group = game.add.group();
 	
 	var_pop_time = 800;
-	
 	gameLoop = game.time.events.loop(var_pop_time, crea_number_rand, this);
 
 	velocity_all_ball = 300;
 	
+	niceText = game.add.text(230, 100, 'NICE !', {font: '50px Arial',fill: '#00FF21'});
 	
-	niceText = game.add.text(230, 60, 'NICE !', {font: '50px Arial',fill: 'green'});
-	goodText = game.add.text(230, 100, 'GOOD !', {font: '50px Arial',fill: 'yellow'});
 	missText = game.add.text(230, 140, 'MISS !', {font: '50px Arial',fill: 'red'});
 	
 	niceText.visible = false;
-	goodText.visible = false;
+
 	missText.visible = false;
-	
 	
 	score = 1;
 	scoreText = game.add.text(215, 10 , 'Score :'+	score, {font: '40px Arial',fill: 'white'});
@@ -83,7 +78,7 @@ function create() {
 	
 	restart_game_key = game.input.keyboard.addKey(Phaser.Keyboard.ENTER);
 	restart_game_key.onDown.add(gameRestart,this);
-		
+	
 	restartText = game.add.text(2, 620, '-Press ENTER to restart !-', {font: '50px Arial',fill: 'white'});
 	restartText.visible = false;
 }
@@ -120,8 +115,6 @@ function update() {
 		if (blue_ball_group.getChildAt(0).y>800)
 		{
 			blue_ball_group.getChildAt(0).destroy();
-			score-=1; 
-			scoreText.setText('Score :' + score);
  			game.time.events.add(0, showMissText, this);
 			miss.play();
 			gameOverText.visible = true;
@@ -137,8 +130,7 @@ function update() {
 		if (green_ball_group.getChildAt(0).y>800)
 		{
 			green_ball_group.getChildAt(0).destroy();
-			score-=1; 
-			scoreText.setText('Score :' + score);
+
 			game.time.events.add(0, showMissText, this);
 			miss.play();
 			gameOverText.visible = true;
@@ -157,8 +149,7 @@ function update() {
 		if (red_ball_group.getChildAt(0).y>800)
 		{
 			red_ball_group.getChildAt(0).destroy();
-			score-=1; 
-			scoreText.setText('Score :' + score);
+
 			game.time.events.add(0, showMissText, this);
 			miss.play();
 			gameOverText.visible = true;
@@ -175,8 +166,7 @@ function update() {
 	if (yellow_ball_group.getChildAt(0).y>800)
 		{
 			yellow_ball_group.getChildAt(0).destroy();
-			score-=1; 
-			scoreText.setText('Score :' + score);
+
 			game.time.events.add(0, showMissText, this);
 			miss.play();
 			gameOverText.visible = true;
@@ -209,7 +199,7 @@ function addScoreBlue () {
 			score+=1;
 			blue_ball_group.getChildAt(0).destroy();
 			scoreText.setText('Score :' + score);
-			game.time.events.add(0, showGoodText, this);
+			
 			validate.play();
 			var_pop_time -=1;
 			velocity_all_ball += 10;
@@ -225,10 +215,11 @@ function addScoreBlue () {
 			var_pop_time -=1;
 			velocity_all_ball += 10;
 		}	
-		if (red_ball_group.getChildAt(0).y<500)
+		if (blue_ball_group.getChildAt(0).y<500)
 		{
 			score -=1;
 			scoreText.setText('Score :' + score);
+			game.time.events.add(0, showMissText, this);
 		}
 	
 	}
@@ -246,7 +237,7 @@ function addScoreGreen () {
 			score+=1;
 			green_ball_group.getChildAt(0).destroy();
 			scoreText.setText('Score :' + score);
-			game.time.events.add(0, showGoodText, this);
+			
 			var_pop_time -=1;
 			velocity_all_ball += 10;
 		}
@@ -259,10 +250,11 @@ function addScoreGreen () {
 			var_pop_time -=1;
 			velocity_all_ball += 10;
 		}	
-		if (red_ball_group.getChildAt(0).y<500)
+		if (green_ball_group.getChildAt(0).y<500)
 		{
 			score -=1;
 			scoreText.setText('Score :' + score);
+			game.time.events.add(0, showMissText, this);
 			
 		}
 	}
@@ -279,7 +271,7 @@ function addScoreRed () {
 			score+=1;
 			red_ball_group.getChildAt(0).destroy();
 			scoreText.setText('Score :' + score);
-			game.time.events.add(0, showGoodText, this);
+			
 			var_pop_time -=1;
 			velocity_all_ball += 10;
 		}
@@ -296,6 +288,7 @@ function addScoreRed () {
 		{
 			score -=1;
 			scoreText.setText('Score :' + score);
+			game.time.events.add(0, showMissText, this);
 			
 		}
 	}
@@ -314,7 +307,7 @@ function addScoreYellow () {
 			score+=1;
 			yellow_ball_group.getChildAt(0).destroy();
 			scoreText.setText('Score :' + score);
-			game.time.events.add(0, showGoodText, this);
+		
 			var_pop_time -=1;
 			velocity_all_ball += 10;
 		}
@@ -327,10 +320,11 @@ function addScoreYellow () {
 			var_pop_time -=1;
 			velocity_all_ball += 10;
 		}	
-		if (red_ball_group.getChildAt(0).y<500)
+		if (yellow_ball_group.getChildAt(0).y<500)
 		{
 			score -=1;
 			scoreText.setText('Score :' + score);
+			game.time.events.add(0, showMissText, this);
 			
 		}
 	}
@@ -346,15 +340,12 @@ function showNiceText() {
 	setTimeout(function(){niceText.visible = false;}, 600); 
 }
 
-function showGoodText() {
-	goodText.visible = true;
-	setTimeout(function(){goodText.visible = false;}, 600); 
-}
+
 
 
 var random_number
 function crea_number_rand() {
-	random_number = game.rnd.integerInRange(1, 4) ;
+	random_number = game.rnd.integerInRange(1, 1) ;
 	if (random_number == 1)
 	{
 		crea_sprite_blue();
