@@ -374,7 +374,7 @@ function crea_number_rand() {
 }
 
 function crea_sprite_blue() {
-	var blue_ball_rand = game.add.sprite(82, 50, 'blue_ball');
+	var blue_ball_rand = game.add.sprite(85, 50, 'blue_ball');
 	blue_ball_rand.scale.setTo(1.5,1.5);
 	game.physics.enable( [blue_ball_rand], Phaser.Physics.ARCADE);
 	blue_ball_rand.body.velocity.y = velocity_all_ball;
@@ -392,7 +392,7 @@ function crea_sprite_green() {
 }
 
 function crea_sprite_red() {
-	var red_ball_rand = game.add.sprite(328, 50, 'red_ball');
+	var red_ball_rand = game.add.sprite(327, 50, 'red_ball');
 	red_ball_rand.scale.setTo(1.5,1.5);
 	game.physics.enable( [red_ball_rand], Phaser.Physics.ARCADE);
 	red_ball_rand.body.velocity.y = velocity_all_ball;
@@ -400,7 +400,7 @@ function crea_sprite_red() {
 }
 
 function crea_sprite_yellow() {
-	var yellow_ball_rand = game.add.sprite(450, 50, 'yellow_ball');
+	var yellow_ball_rand = game.add.sprite(446, 50, 'yellow_ball');
 	yellow_ball_rand.scale.setTo(1.5,1.5);
 	game.physics.enable( [yellow_ball_rand], Phaser.Physics.ARCADE);
 	yellow_ball_rand.body.velocity.y = velocity_all_ball;
