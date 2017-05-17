@@ -13,8 +13,6 @@ function preload() {
 }
 
 var score
-
-
 var var_pop_time
 var gameLoop
 var velocity_all_ball
@@ -28,13 +26,13 @@ function create() {
 
 	game.add.sprite(0,0, 'bg');
 	
-	validate = game.add.audio('validate');
-	miss = game.add.audio('miss');
-
 	blue_ball_group = game.add.group();
 	green_ball_group = game.add.group();
 	red_ball_group = game.add.group();
 	yellow_ball_group = game.add.group();
+	
+	validate = game.add.audio('validate');
+	miss = game.add.audio('miss');
 	
 	var_pop_time = 800;
 	gameLoop = game.time.events.loop(var_pop_time, crea_number_rand, this);
@@ -42,11 +40,8 @@ function create() {
 	velocity_all_ball = 300;
 	
 	niceText = game.add.text(230, 100, 'NICE !', {font: '50px Arial',fill: '#00FF21'});
-	
-	missText = game.add.text(230, 140, 'MISS !', {font: '50px Arial',fill: 'red'});
-	
 	niceText.visible = false;
-
+	missText = game.add.text(230, 140, 'MISS !', {font: '50px Arial',fill: 'red'});
 	missText.visible = false;
 	
 	score = 1;
@@ -69,16 +64,13 @@ function create() {
 	game.paused = true ; 
 	start_game_key = game.input.keyboard.addKey(Phaser.Keyboard.SPACEBAR);
 	start_game_key.onDown.add(gameStart, this);
-	
 	startText = game.add.text(2, 620, '-Press Space bar to start !-', {font: '50px Arial',fill: 'white'});
 	
 	gameOverText = game.add.text(30, 350, 'GAME OVER ', {font: '90px Arial',fill: 'white'});
 	gameOverText.visible = false;
 	
-	
 	restart_game_key = game.input.keyboard.addKey(Phaser.Keyboard.ENTER);
 	restart_game_key.onDown.add(gameRestart,this);
-	
 	restartText = game.add.text(2, 620, '-Press ENTER to restart !-', {font: '50px Arial',fill: 'white'});
 	restartText.visible = false;
 }
@@ -130,7 +122,6 @@ function update() {
 		if (green_ball_group.getChildAt(0).y>800)
 		{
 			green_ball_group.getChildAt(0).destroy();
-
 			game.time.events.add(0, showMissText, this);
 			miss.play();
 			gameOverText.visible = true;
@@ -149,7 +140,6 @@ function update() {
 		if (red_ball_group.getChildAt(0).y>800)
 		{
 			red_ball_group.getChildAt(0).destroy();
-
 			game.time.events.add(0, showMissText, this);
 			miss.play();
 			gameOverText.visible = true;
@@ -166,7 +156,6 @@ function update() {
 	if (yellow_ball_group.getChildAt(0).y>800)
 		{
 			yellow_ball_group.getChildAt(0).destroy();
-
 			game.time.events.add(0, showMissText, this);
 			miss.play();
 			gameOverText.visible = true;
@@ -199,7 +188,6 @@ function addScoreBlue () {
 			score+=1;
 			blue_ball_group.getChildAt(0).destroy();
 			scoreText.setText('Score :' + score);
-			
 			validate.play();
 			var_pop_time -=1;
 			velocity_all_ball += 10;
@@ -237,7 +225,6 @@ function addScoreGreen () {
 			score+=1;
 			green_ball_group.getChildAt(0).destroy();
 			scoreText.setText('Score :' + score);
-			
 			var_pop_time -=1;
 			velocity_all_ball += 10;
 		}
@@ -271,7 +258,6 @@ function addScoreRed () {
 			score+=1;
 			red_ball_group.getChildAt(0).destroy();
 			scoreText.setText('Score :' + score);
-			
 			var_pop_time -=1;
 			velocity_all_ball += 10;
 		}
@@ -345,7 +331,7 @@ function showNiceText() {
 
 var random_number
 function crea_number_rand() {
-	random_number = game.rnd.integerInRange(1, 1) ;
+	random_number = game.rnd.integerInRange(1, 4) ;
 	if (random_number == 1)
 	{
 		crea_sprite_blue();
