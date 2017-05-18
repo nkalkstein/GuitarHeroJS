@@ -19,7 +19,7 @@ body {
 
 
 header {
-	background-image: url(http://i.imgur.com/NnzxG4S.jpg);
+	background-image: url("web/bg.jpg");
 	background-size: cover;
 	background-position: center;
 	height: 100vh;
@@ -39,6 +39,9 @@ header {
 
 }	
 
+.gamebg {
+	background-color: #363636;
+}
 
 h1 {
 	font-family: arc, monospace;
