@@ -1,14 +1,15 @@
 var game = new Phaser.Game(600, 800, Phaser.AUTO, 'TapTapGuitar', { preload: preload, create: create, update: update, render:render   });
 
 function preload() {
-	game.load.image('bg' , 'game/img/background.png');
-	game.load.image('blue_ball' , 'game/img/blue_ball.png');
-	game.load.image('green_ball' , 'game/img/green_ball.png');
-	game.load.image('red_ball' , 'game/img/red_ball.png');
-	game.load.image('yellow_ball' , 'game/img/yellow_ball.png');
-	game.load.audio('validate', 'game/sound/validate.wav');
-	game.load.audio('miss', 'game/sound/miss.wav');
-
+	game.load.image('bg' , 'img/background.png');
+	game.load.image('blue_ball' , 'img/blue_ball.png');
+	game.load.image('green_ball' , 'img/green_ball.png');
+	game.load.image('red_ball' , 'img/red_ball.png');
+	game.load.image('yellow_ball' , 'img/yellow_ball.png');
+	game.load.audio('validate', 'sound/validate.wav');
+	game.load.audio('miss', 'sound/miss.wav');
+	game.load.image('play_button' , 'img/play_button.png');
+	game.load.image('pause_button' , 'img/pause_button.png');
 	
 }
 
@@ -26,6 +27,11 @@ function create() {
 
 	game.add.sprite(0,0, 'bg');
 	
+	play_button = game.add.sprite(55,20, 'play_button');
+	pause_button = game.add.sprite(15,20, 'pause_button');
+
+
+	
 	blue_ball_group = game.add.group();
 	green_ball_group = game.add.group();
 	red_ball_group = game.add.group();
@@ -41,11 +47,10 @@ function create() {
 	
 	niceText = game.add.text(230, 100, 'NICE !', {font: '50px Arial',fill: '#00FF21'});
 	niceText.visible = false;
-	missText = game.add.text(230, 140, 'MISS !', {font: '50px Arial',fill: 'red'});
-	missText.visible = false;
 	
-	score = 1;
-	scoreText = game.add.text(215, 10 , 'Score :'+	score, {font: '40px Arial',fill: 'white'});
+	
+	score = 0;
+	scoreText = game.add.text(215, 12 , 'score :'+	score, {font: '40px Arial',fill: 'white'});
 	
 	blue_button= game.input.keyboard.addKey(Phaser.Keyboard.A);
 	blue_button.onDown.add(addScoreBlue, this);
@@ -59,44 +64,31 @@ function create() {
 	yellow_button= game.input.keyboard.addKey(Phaser.Keyboard.R);
 	yellow_button.onDown.add(addScoreYellow, this);
 	
-	highScoreText = this.game.add.text(10, 18, 'Best: ' + highscore, {font: '30px Arial', fill: 'white'});
+	highScoreText = this.game.add.text(450, 15, 'Best: ' + highscore, {font: '35px Arial', fill: 'white'});
 	
-	game.paused = true ; 
+	 
 	start_game_key = game.input.keyboard.addKey(Phaser.Keyboard.SPACEBAR);
 	start_game_key.onDown.add(gameStart, this);
-	startText = game.add.text(2, 620, '-Press Space bar to start !-', {font: '50px Arial',fill: 'white'});
+	startText = game.add.text(60, 630, 'Press SPACE to play !', {font: '50px Arial',fill: 'white'});
 	
 	gameOverText = game.add.text(30, 350, 'GAME OVER ', {font: '90px Arial',fill: 'white'});
 	gameOverText.visible = false;
 	
 	restart_game_key = game.input.keyboard.addKey(Phaser.Keyboard.ENTER);
 	restart_game_key.onDown.add(gameRestart,this);
-	restartText = game.add.text(2, 620, '-Press ENTER to restart !-', {font: '50px Arial',fill: 'white'});
+	restartText = game.add.text(30, 630, 'Press ENTER to restart !', {font: '50px Arial',fill: 'white'});
 	restartText.visible = false;
-}
-
-function gameStart() {
-	if (score == 1)
-	{
-	startText.visible = true;
-	setTimeout(function(){startText.visible = false;}, 400);
-	game.paused = false ;
-	}
-	else 
-	{ 
-		startText.visible = false;
-	}
-}
-
-function gameRestart(){
 	
-	if (restart_game_key.isDown)
-	{
-		game.paused = false;
-		game.state.restart();
-	}
+	play_button.events.onInputDown.add(play_game, this);
+	play_button.inputEnabled = true;
+    play_button.input.useHandCursor = true;
+	
+	pause_button.events.onInputDown.add(paused_game, this);
+	pause_button.inputEnabled = true;
+    pause_button.input.useHandCursor = true;
+	
+	game.paused = true ;
 }
-
 
 function update() {
 	if (blue_ball_group.length === 0)
@@ -107,8 +99,6 @@ function update() {
 		if (blue_ball_group.getChildAt(0).y>800)
 		{
 			blue_ball_group.getChildAt(0).destroy();
- 			game.time.events.add(0, showMissText, this);
-			miss.play();
 			gameOverText.visible = true;
 			game.paused = true;
 			restartText.visible = true;
@@ -122,8 +112,6 @@ function update() {
 		if (green_ball_group.getChildAt(0).y>800)
 		{
 			green_ball_group.getChildAt(0).destroy();
-			game.time.events.add(0, showMissText, this);
-			miss.play();
 			gameOverText.visible = true;
 			game.paused = true;
 			restartText.visible = true; 
@@ -140,8 +128,6 @@ function update() {
 		if (red_ball_group.getChildAt(0).y>800)
 		{
 			red_ball_group.getChildAt(0).destroy();
-			game.time.events.add(0, showMissText, this);
-			miss.play();
 			gameOverText.visible = true;
 			game.paused = true;
 			restartText.visible = true; 
@@ -156,8 +142,6 @@ function update() {
 	if (yellow_ball_group.getChildAt(0).y>800)
 		{
 			yellow_ball_group.getChildAt(0).destroy();
-			game.time.events.add(0, showMissText, this);
-			miss.play();
 			gameOverText.visible = true;
 			game.paused = true;
 			restartText.visible = true; 
@@ -172,8 +156,7 @@ function update() {
     {
 		localStorage.setItem("highscore", score);
     }
-	
-	
+
 }
 	
 function addScoreBlue () {
@@ -183,21 +166,21 @@ function addScoreBlue () {
 		//	nothing
 	}else {
 		
-		if (blue_ball_group.getChildAt(0).y>500&&blue_ball_group.getChildAt(0).y<600)
+		if (blue_ball_group.getChildAt(0).y>500&&blue_ball_group.getChildAt(0).y<620)
 		{
 			score+=1;
 			blue_ball_group.getChildAt(0).destroy();
-			scoreText.setText('Score :' + score);
+			scoreText.setText('score :' + score);
 			validate.play();
 			var_pop_time -=1;
 			velocity_all_ball += 10;
 			
 		}
-		if (blue_ball_group.getChildAt(0).y>=600&&blue_ball_group.getChildAt(0).y<700)
+		if (blue_ball_group.getChildAt(0).y>=620&&blue_ball_group.getChildAt(0).y<670)
 		{
 			score+=5; 
 			blue_ball_group.getChildAt(0).destroy();	
-			scoreText.setText('Score :' + score);
+			scoreText.setText('score :' + score);
 			game.time.events.add(0, showNiceText, this);
 			validate.play();
 			var_pop_time -=1;
@@ -206,8 +189,8 @@ function addScoreBlue () {
 		if (blue_ball_group.getChildAt(0).y<500)
 		{
 			score -=1;
-			scoreText.setText('Score :' + score);
-			game.time.events.add(0, showMissText, this);
+			scoreText.setText('score :' + score);
+
 		}
 	
 	}
@@ -220,19 +203,19 @@ function addScoreGreen () {
 	}else {
 
 
-		if (green_ball_group.getChildAt(0).y>500&&green_ball_group.getChildAt(0).y<600)
+		if (green_ball_group.getChildAt(0).y>500&&green_ball_group.getChildAt(0).y<620)
 		{
 			score+=1;
 			green_ball_group.getChildAt(0).destroy();
-			scoreText.setText('Score :' + score);
+			scoreText.setText('score :' + score);
 			var_pop_time -=1;
 			velocity_all_ball += 10;
 		}
-		if (green_ball_group.getChildAt(0).y>=600&&green_ball_group.getChildAt(0).y<700)
+		if (green_ball_group.getChildAt(0).y>=620&&green_ball_group.getChildAt(0).y<670)
 		{
 			score+=5; 
 			green_ball_group.getChildAt(0).destroy();	
-			scoreText.setText('Score :' + score);
+			scoreText.setText('score :' + score);
 			game.time.events.add(0, showNiceText, this);
 			var_pop_time -=1;
 			velocity_all_ball += 10;
@@ -240,8 +223,8 @@ function addScoreGreen () {
 		if (green_ball_group.getChildAt(0).y<500)
 		{
 			score -=1;
-			scoreText.setText('Score :' + score);
-			game.time.events.add(0, showMissText, this);
+			scoreText.setText('score :' + score);
+
 			
 		}
 	}
@@ -253,19 +236,19 @@ function addScoreRed () {
 		//	nothing
 	}else {
 
-		if (red_ball_group.getChildAt(0).y>500&&red_ball_group.getChildAt(0).y<600)
+		if (red_ball_group.getChildAt(0).y>500&&red_ball_group.getChildAt(0).y<620)
 		{
 			score+=1;
 			red_ball_group.getChildAt(0).destroy();
-			scoreText.setText('Score :' + score);
+			scoreText.setText('score :' + score);
 			var_pop_time -=1;
 			velocity_all_ball += 10;
 		}
-		if (red_ball_group.getChildAt(0).y>=600&&red_ball_group.getChildAt(0).y<700)
+		if (red_ball_group.getChildAt(0).y>=620&&red_ball_group.getChildAt(0).y<670)
 		{
 			score+=5; 
 			red_ball_group.getChildAt(0).destroy();	
-			scoreText.setText('Score :' + score);
+			scoreText.setText('score :' + score);
 			game.time.events.add(0, showNiceText, this);
 			var_pop_time -=1;
 			velocity_all_ball += 10;
@@ -273,8 +256,8 @@ function addScoreRed () {
 		if (red_ball_group.getChildAt(0).y<500)
 		{
 			score -=1;
-			scoreText.setText('Score :' + score);
-			game.time.events.add(0, showMissText, this);
+			scoreText.setText('score :' + score);
+
 			
 		}
 	}
@@ -288,20 +271,20 @@ function addScoreYellow () {
 	}else {
 
 	
-		if (yellow_ball_group.getChildAt(0).y>500&&yellow_ball_group.getChildAt(0).y<600)
+		if (yellow_ball_group.getChildAt(0).y>500&&yellow_ball_group.getChildAt(0).y<620)
 		{
 			score+=1;
 			yellow_ball_group.getChildAt(0).destroy();
-			scoreText.setText('Score :' + score);
+			scoreText.setText('score :' + score);
 		
 			var_pop_time -=1;
 			velocity_all_ball += 10;
 		}
-		if (yellow_ball_group.getChildAt(0).y>=600&&yellow_ball_group.getChildAt(0).y<700)
+		if (yellow_ball_group.getChildAt(0).y>=620&&yellow_ball_group.getChildAt(0).y<670)
 		{
 			score+=5; 
 			yellow_ball_group.getChildAt(0).destroy();	
-			scoreText.setText('Score :' + score);
+			scoreText.setText('score :' + score);
 			game.time.events.add(0, showNiceText, this);
 			var_pop_time -=1;
 			velocity_all_ball += 10;
@@ -309,25 +292,12 @@ function addScoreYellow () {
 		if (yellow_ball_group.getChildAt(0).y<500)
 		{
 			score -=1;
-			scoreText.setText('Score :' + score);
-			game.time.events.add(0, showMissText, this);
+			scoreText.setText('score :' + score);
+
 			
 		}
 	}
 }
-
-function showMissText() {
-	missText.visible = true;
-	setTimeout(function(){missText.visible = false;}, 600); 
-}
-
-function showNiceText() {
-	niceText.visible = true;
-	setTimeout(function(){niceText.visible = false;}, 600); 
-}
-
-
-
 
 var random_number
 function crea_number_rand() {
@@ -383,6 +353,43 @@ function crea_sprite_yellow() {
 	yellow_ball_group.add(yellow_ball_rand);
 }
 
+function showNiceText() {
+	niceText.visible = true;
+	setTimeout(function(){niceText.visible = false;}, 600); 
+}
+
+function play_game() {
+	if (game.paused = true)
+	{
+		game.paused = false;
+	}
+}
+
+function paused_game(){
+	game.paused = true;	
+}
+
+function gameStart() {
+	if (score == 0)
+	{
+	startText.visible = true;
+	setTimeout(function(){startText.visible = false;}, 400);
+	game.paused = false ;
+	}
+	else 
+	{ 
+		startText.visible = false;
+	}
+}
+
+function gameRestart(){
+	
+	if (restart_game_key.isDown)
+	{
+		game.paused = false;
+		game.state.restart();
+	}
+}
 
 function render() {
 
