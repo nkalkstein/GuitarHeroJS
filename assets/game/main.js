@@ -9,33 +9,38 @@ var game = new Phaser.Game(600, 800, Phaser.AUTO, 'TapTapGuitar', { preload: pre
 						/* Preload function : loading diffenrents assets (images, sound etc) */
 
 function preload() {
-	game.load.image('bg' , 'game/img/background.png');
-	game.load.image('blue_ball' , 'game/img/blue_ball.png');
-	game.load.image('green_ball' , 'game/img/green_ball.png');
-	game.load.image('red_ball' , 'game/img/red_ball.png');
-	game.load.image('yellow_ball' , 'game/img/yellow_ball.png');
-	game.load.audio('validate', 'game/sound/validate.wav');
+	game.load.image('bg' , 'assets/game/img/background.png');
+	game.load.image('blue_ball' , 'assets/game/img/blue_ball.png');
+	game.load.image('green_ball' , 'assets/game/img/green_ball.png');
+	game.load.image('red_ball' , 'assets/game/img/red_ball.png');
+	game.load.image('yellow_ball' , 'assets/game/img/yellow_ball.png');
+	game.load.audio('validate', 'assets/game/sound/validate.wav');
 
 
 }
 
 						/* variables declaration and initialisation  */
 
-var score = 0;
-var var_pop_time = 800;  // set up the spawning time at 800ms
+var score
+var var_pop_time  
 var gameLoop
-var velocity_all_ball =300; // set up velocity on y axis 
+var velocity_all_ball  
 var highscore = 0;  
 var random_number
 
 						/* Create function : create differents sprite from assets */
 function create() {
+	
+	score = 0;
+	var_pop_time = 800;	// set up the spawning time at 800ms
+	velocity_all_ball =300; // set up velocity on y axis
+	
 	game.physics.startSystem(Phaser.Physics.ARCADE); // physics that allow all sprite to interest with the environnement 
   
 	game.add.sprite(0,0, 'bg'); // setting up the background image
 	
 	game.paused = true ; 
-	
+
 	start_game_key = game.input.keyboard.addKey(Phaser.Keyboard.SPACEBAR);  // adding space bar key
 	start_game_key.onDown.add(gameStart, this);  // when spacebar is down this lanch the fonction gameStart
 	startText = game.add.text(25, 600, 'Press <SPACE> to play !', {font: '50px Arial',fill: 'white'});
