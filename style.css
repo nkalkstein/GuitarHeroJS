@@ -19,7 +19,7 @@ body {
 
 
 header {
-	background-image: url("web/bg.jpg");
+	background-image: url("assets/web/bg.jpg");
 	background-size: cover;
 	background-position: center;
 	height: 100vh;
