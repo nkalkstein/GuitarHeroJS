@@ -14,6 +14,7 @@ function preload() {
 	game.load.image('green_ball' , 'assets/game/img/green_ball.png');
 	game.load.image('red_ball' , 'assets/game/img/red_ball.png');
 	game.load.image('yellow_ball' , 'assets/game/img/yellow_ball.png');
+	game.load.image('logo','assets/game/img/logo.png')
 	game.load.audio('validate', 'assets/game/sound/validate.wav');
 
 
@@ -82,6 +83,9 @@ function create() {
 	niceText.visible = false;
 	
 	validate = game.add.audio('validate'); // audio added 
+	
+	logo1 = game.add.sprite(10,0, 'logo');
+	logo1.scale.setTo(0.365,0.365);  // size reduction
 
 }
 
