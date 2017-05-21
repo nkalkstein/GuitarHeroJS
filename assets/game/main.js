@@ -84,8 +84,8 @@ function create() {
 	
 	validate = game.add.audio('validate'); // audio added 
 	
-	logo1 = game.add.sprite(10,0, 'logo');
-	logo1.scale.setTo(0.365,0.365);  // size reduction
+	logo = game.add.sprite(10,0, 'logo');
+	logo.scale.setTo(0.365,0.365);  // size reduction
 
 }
 
