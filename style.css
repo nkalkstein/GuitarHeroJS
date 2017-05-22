@@ -6,12 +6,6 @@
 
 
 
-
-
-
-
-
-
 body {
 	margin: 0;
 	padding: 0;
@@ -48,13 +42,20 @@ h1 {
 	font-size: 6em;
 }
 
+h2{
+	text-align: center;
+	font-size: 2em;
+}
+
 p {
 	max-width: 600px;
  	margin : 0 auto 20px;
 
 }
 
+.screenshot {
 
+}
 
 
 
