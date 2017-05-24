@@ -5,29 +5,89 @@
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
 
-		<link rel="stylesheet" href="style.css"/>
+		<link rel="stylesheet" href="assets/web/css/style.css"/>
+		
+		<!-- animsition.css -->
+		<link rel="stylesheet" href="assets/web/css/animsition.css">
+		<!-- jQuery -->
+		<script src="assets/web/js/jquery-3.2.1.js"></script>
+		<!-- animsition.js -->
+		<script src="assets/web/js/animsition.js"></script>
+
 	</head>
 
-	<body>
+	<body><div class="animsition">
 		<header>
 			<h1 class="hvr-grow"><img src="assets/web/logo_big.png" alt="tap tap Guitar" class="logo"></h1>
 			<p class="hvr-sink"><img src="assets/web/arrow.png" alt="arrow down" class="arrow"></p>
 		</header>
 		
-		<h2> Tutoriel</h2>
+		
+		<section class="playgame">
+			<a class="button hvr-bubble-right animsition-link"    data-animsition-out-class="fade-out-right" data-animsition-out-duration="2000" href="game.html" >PLAY NOW ! </a> 
+			<img src="assets/web/mac.png" alt="iMac" class="mac">
+			
+		
+		
+		
+		
+		</section>
+		
+		
+		<section class="tuto">
+			<h2>HOW TO PLAY </h2>
+			
+		</section>
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		<!-- <h2> Tutoriel</h2>
 		<p> Avant tout, le jeu TapTapGuitar est inspiré du jeu GuitarHero. Dans ce jeu, le but est d'appuyer en rythme sur les boules (à un moment précis) qui apparaissent aléatoirement à l’écran.</p>
 		<p> Voici une image du jeu. Des boules de couleurs vont appartaitre aléatoirement sur les 4 cordes verticales bleu, verte, rouge et jaune et vont aller du haut vers le bas. Chaque corde est associé à une touche du clavier : S pour la corde bleu, D pour la corde rouge , F pour la corde rouge et G pour la corde jaune. </p>
 		<p>Lorsque une boule arrieve au niveau de la ligne noire, il faut appuyer sur la touche associé à cette boule et ainsi gagner des points ! Si tu appuies au moment où la boule et sur la ligne noir alors tu gagneras 5 points et si tu appuies un peu avant alors tu ne gagneras que 1 points (inutile de spammer les touche en continue car cela te fait perdre des points). Mais ATTENTION si tu laisses passer une boule alors auras perdu ! </p>
-		<p>Maintenant à toi de faire le meilleur score ;) </p>
+		<p>Maintenant à toi de faire le meilleur score ;) </p> -->
 
 
-		<div class="screenshot">
-			<center>
-				<img src="assets/web/screenshot.png" />
-			</center>
-		</div>
 
-	</body>
-
+	</div></body>
+  
+  
+  
+  <script>
+$(document).ready(function() {
+  $(".animsition").animsition({
+    inClass: 'fade-in',
+    outClass: 'fade-out',
+    inDuration: 1500,
+    outDuration: 800,
+    linkElement: '.animsition-link',
+    // e.g. linkElement: 'a:not([target="_blank"]):not([href^="#"])'
+    loading: true,
+    loadingParentElement: 'body', //animsition wrapper element
+    loadingClass: 'animsition-loading',
+    loadingInner: '', // e.g '<img src="loading.svg" />'
+    timeout: false,
+    timeoutCountdown: 5000,
+    onLoadEvent: true,
+    browser: [ 'animation-duration', '-webkit-animation-duration'],
+    // "browser" option allows you to disable the "animsition" in case the css property in the array is not supported by your browser.
+    // The default setting is to disable the "animsition" in a browser that does not support "animation-duration".
+    overlay : false,
+    overlayClass : 'animsition-overlay-slide',
+    overlayParentElement : 'body',
+    transition: function(url){ window.location.href = url; }
+  });
+});
+  </script>
 
 </html>
