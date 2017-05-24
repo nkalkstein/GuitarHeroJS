@@ -68,7 +68,7 @@ header {
 
 .button {
   display: inline-block;
-	border-radius : 5px;
+  border-radius : 5px;
   background-color: #e74c3c;
   border: none;
   color: #FFFFFF;
@@ -89,6 +89,12 @@ header {
 .tuto {
 	background-color : #34495e;
 	height : 70vh;
+	
+	
+	justify-content:center;
+	align-items : center;
+
+	
 
 }
 a {
@@ -108,16 +114,37 @@ h1 {
 h2{
 	text-align: center;
 	font-size: 2em;
+    text-decoration: underline;
 }
 
+.contenu-tuto{
+	display : flex;
+
+}
+
+
 p {
-	max-width: 600px;
- 	margin : 0 auto 20px;
+	
+	max-width: 500px;
+	padding-top : 20px;
+	margin : auto;
+	padding-left : 30px;
+	
+	
+	
+	
 
 }
 
 .screenshot {
 
+	float : left;
+	height : 55vh;
+	width : 40vh;
+	padding-top : 20px;
+	padding-left : 10px;
+	margin : auto;
+	padding-right : 30px;
 }
 
 
