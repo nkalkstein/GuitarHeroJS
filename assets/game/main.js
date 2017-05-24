@@ -77,7 +77,7 @@ function create() {
 
 	scoreText = game.add.text(215, 12 , 'score : '+	score, {font: '40px Arial',fill: 'white'}); 
 	
-	highScoreText = this.game.add.text(450, 15, 'HS : ' + highscore, {font: '40px Arial', fill: 'white'}); 
+	highScoreText = this.game.add.text(445, 15, 'HS : ' +highscore, {font: '40px Arial', fill: 'white'}); 
 	
 	niceText = game.add.text(230, 100, 'NICE !', {font: '50px Arial',fill: '#00FF21'});
 	niceText.visible = false;
