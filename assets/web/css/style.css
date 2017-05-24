@@ -1,9 +1,9 @@
 @font-face {
-    font-family: arc;
+    font-family: 'arc';
     src: url(assets/fonts/Arciform.otf);
 }
 @font-face {
-    font-family: roboto;
+    font-family: 'roboto';
     src: url(assets/fonts/Roboto-Regular.ttf);
 }
 
@@ -22,10 +22,11 @@ header {
 	background-position: center;
 	height: 100vh;
 	
+	
 
 	display: flex;
-	flex-direction:column;
-	justify-content:center;
+	flex-direction: column;
+	justify-content: center;
 	align-items : center;
 
 
@@ -79,7 +80,7 @@ header {
   transition: all 0.5s;
   cursor: pointer;
   margin: 5px;
-  font-family : roboto ;
+  font-family : 'roboto' ;
 }
 
 
@@ -114,37 +115,36 @@ h1 {
 h2{
 	text-align: center;
 	font-size: 2em;
-    text-decoration: underline;
+	color: #FFFFFF;
+	padding-top : 20px;
 }
 
 .contenu-tuto{
 	display : flex;
+	
 
 }
 
 
 p {
-	
-	max-width: 500px;
+	color: #FFFFFF;
+	max-width: 400px;
 	padding-top : 20px;
 	margin : auto;
-	padding-left : 30px;
-	
-	
-	
-	
-
+	padding-right : 30px;
+	font-family : 'roboto' ;
+	font-size: 20px;
 }
 
 .screenshot {
 
-	float : left;
+	float : right;
 	height : 55vh;
 	width : 40vh;
 	padding-top : 20px;
-	padding-left : 10px;
+	padding-right : 10px;
 	margin : auto;
-	padding-right : 30px;
+	padding-left : 30px;
 }
 
 
