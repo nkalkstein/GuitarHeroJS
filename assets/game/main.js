@@ -14,9 +14,9 @@ function preload() {
 	game.load.image('green_ball' , 'assets/game/img/green_ball.png');
 	game.load.image('red_ball' , 'assets/game/img/red_ball.png');
 	game.load.image('yellow_ball' , 'assets/game/img/yellow_ball.png');
-	game.load.image('logo','assets/game/img/logo.png')
-	game.load.audio('validate', 'assets/game/sound/validate.wav');
-
+	game.load.image('logo','assets/game/img/logo.png');
+	game.load.audio('validate', 'assets/game/sound/validate2.wav');
+	game.load.audio('music', 'assets/game/sound/audio-game.mp3');
 
 }
 
@@ -83,9 +83,13 @@ function create() {
 	niceText.visible = false;
 	
 	validate = game.add.audio('validate'); // audio added 
+	music = game.add.audio('music');
 	
 	logo = game.add.sprite(10,8, 'logo');
 	logo.scale.setTo(0.30,0.30);  // size reduction
+	
+	game.sound.stopAll();  //stop all sound for the restart
+	music.play(); //play the background music
 
 }
 
@@ -162,10 +166,11 @@ function update() {
     }
 	
 	gameLoop.delay = var_pop_time; // update 60 times per second the var_pop_time variable
-
+	
+	
 	
 }
-	
+
 
 							/* Different functions used in the game (increased score, check position etc)*/
 
@@ -202,7 +207,6 @@ function crea_sprite_blue() {
 
 function crea_sprite_green() {
 	var green_ball_rand = game.add.sprite(203, 50, 'green_ball');
-
 	game.physics.enable( [green_ball_rand], Phaser.Physics.ARCADE);
 	green_ball_rand.body.velocity.y = velocity_all_ball;
 	green_ball_group.add(green_ball_rand);
@@ -211,7 +215,6 @@ function crea_sprite_green() {
 
 function crea_sprite_red() {
 	var red_ball_rand = game.add.sprite(323, 50, 'red_ball');
-
 	game.physics.enable( [red_ball_rand], Phaser.Physics.ARCADE);
 	red_ball_rand.body.velocity.y = velocity_all_ball;
 	red_ball_group.add(red_ball_rand);
@@ -282,6 +285,7 @@ function addScoreGreen () {
 			green_ball_group.getChildAt(0).destroy();	
 			scoreText.setText('score :' + score);
 			game.time.events.add(0, showNiceText, this);
+			validate.play();
 			var_pop_time -=1;
 			velocity_all_ball += 10;
 		}	
@@ -315,6 +319,7 @@ function addScoreRed () {
 			red_ball_group.getChildAt(0).destroy();	
 			scoreText.setText('score :' + score);
 			game.time.events.add(0, showNiceText, this);
+			validate.play();
 			var_pop_time -=1;
 			velocity_all_ball += 10;
 		}	
@@ -351,6 +356,7 @@ function addScoreYellow () {
 			yellow_ball_group.getChildAt(0).destroy();	
 			scoreText.setText('score :' + score);
 			game.time.events.add(0, showNiceText, this);
+			validate.play();
 			var_pop_time -=1;
 			velocity_all_ball += 10;
 		}	
@@ -383,7 +389,8 @@ function gameStart() {
 	}
 	else  
 	{ 
-		startText.visible = false;  
+		startText.visible = false; 
+		
 	}
 }
 
@@ -396,6 +403,7 @@ function gameRestart(){
 		game.state.restart();  // restart all function 
 	}
 }
+
 
 
 								/* render debug info */
