@@ -108,8 +108,9 @@ h1 {
 h2{
 	text-align: center;
 	font-size: 2em;
-	color: #FFFFFF;
+	color: #ecf0f1;
 	padding-top : 20px;
+	margin : 0;
 }
 
 .contenu-tuto{
