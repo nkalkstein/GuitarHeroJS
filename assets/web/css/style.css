@@ -88,7 +88,7 @@ header {
 
 #tuto {
 	background-color : #34495e;
-	height : 70vh;
+	height : 50vh;
 	font-family : Arial, Helvetica, sans-serif ;
 }
 a {
@@ -133,7 +133,7 @@ h2{
 	margin-right : auto;
 	margin-bottom: auto;
 	margin-top : auto;
-	color : #FFFF;
+	color : #ecf0f1;
 }
 
 p {
@@ -147,16 +147,13 @@ p {
 .screenshot {
 	
 	float : right;
-	height : 50vh;
-	width : 37vh;
+	height : 35vh;
+	width : 25vh;
 	margin-left : auto;
 	
 	
-	/*margin-right: auto;
-	padding-top : 10px;
-	padding-right : 30px;
-	padding-bottom : 20 px;
-	padding-left : 20px;*/
+	
+	padding-right: 25px;
 
 }
 
@@ -164,9 +161,19 @@ p {
 
 
 
+footer {
+	height : 20px;
+	text-align : center;
+	background-color :#34495E ;
+	font-family : Arial;
+	color :#7f8c8d;
+	
+}
 
+span {
+	margin-bottom : 10px;
 
-
+}
 
 #TapTapGuitar {
 	margin: auto;
