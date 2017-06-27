@@ -15,9 +15,20 @@ function preload() {
 	game.load.image('red_ball' , 'assets/game/img/red_ball.png');
 	game.load.image('yellow_ball' , 'assets/game/img/yellow_ball.png');
 	game.load.image('logo','assets/game/img/logo.png');
-	game.load.audio('validate', 'assets/game/sound/validate2.wav');
-	game.load.audio('music', 'assets/game/sound/audio-game.mp3');
 
+	game.load.audio('music', 'assets/game/sound/audio-game.mp3');
+	
+	game.load.audio('note1', 'assets/game/sound/Vocal 011.mp3');
+	game.load.audio('note2', 'assets/game/sound/Vocal 012.mp3');
+	game.load.audio('note3', 'assets/game/sound/Vocal 013.mp3');
+	game.load.audio('note4', 'assets/game/sound/Vocal 014.mp3');
+	game.load.audio('note5', 'assets/game/sound/Vocal 015.mp3');
+	game.load.audio('note6', 'assets/game/sound/Vocal 016.mp3');
+	game.load.audio('note7', 'assets/game/sound/Vocal 017.mp3');
+	game.load.audio('note8', 'assets/game/sound/Vocal 018.mp3');
+	game.load.audio('note9', 'assets/game/sound/Vocal 019.mp3');
+	game.load.audio('note10', 'assets/game/sound/Vocal 020.mp3');
+	game.load.audio('note11', 'assets/game/sound/Vocal 021.mp3');
 }
 
 						/* variables declaration and initialisation  */
@@ -29,10 +40,14 @@ var velocity_all_ball
 var highscore = 0;  
 var random_number
 
+var music_note
+
 						/* Create function : create differents sprite from assets */
 function create() {
 	
 	score = 0;
+	music_note = 0;
+	
 	var_pop_time = 800;	// set up the spawning time at 800ms
 	velocity_all_ball =300; // set up velocity on y axis
 	
@@ -82,15 +97,27 @@ function create() {
 	niceText = game.add.text(230, 100, 'NICE !', {font: '50px Arial',fill: '#00FF21'});
 	niceText.visible = false;
 	
-	validate = game.add.audio('validate'); // audio added 
-	music = game.add.audio('music');
+  
+	music = game.add.audio('music');// audio added
 	
 	logo = game.add.sprite(10,8, 'logo');
 	logo.scale.setTo(0.30,0.30);  // size reduction
 	
 	game.sound.stopAll();  //stop all sound for the restart
-	music.play(); //play the background music
-
+	//music.play(); //play the background music
+	
+	note11 = game.add.audio('note1');
+	note12 = game.add.audio('note2');
+	note13 = game.add.audio('note3');
+	note14 = game.add.audio('note4');
+	note15 = game.add.audio('note5');
+	note16 = game.add.audio('note6');
+	note17 = game.add.audio('note7');
+	note18 = game.add.audio('note8');
+	note19 = game.add.audio('note9');
+	note20 = game.add.audio('note10');
+	note21 = game.add.audio('note11');
+	
 }
 
 						/* update function is called at every frame (~60x/second), main porte of the game*/
@@ -168,7 +195,6 @@ function update() {
 	gameLoop.delay = var_pop_time; // update 60 times per second the var_pop_time variable
 	
 	
-	
 }
 
 
@@ -240,9 +266,10 @@ function addScoreBlue () {
 			score+=1; // increase score
 			blue_ball_group.getChildAt(0).destroy(); // kill child
 			scoreText.setText('score :' + score); //update score text
-			validate.play(); 
 			var_pop_time -=1; // define a new var_pop_time value (increasing the difficulty)
-			velocity_all_ball += 10; // increase the velocity of each balls (increasing the difficulty)
+			velocity_all_ball +=20; // increase the velocity of each balls (increasing the difficulty)
+			music_note +=1;	// compteur determine quelle note il faut joueur
+			game_music(); //execute la fonction pour jouer la bonne note
 			
 		}
 		if (blue_ball_group.getChildAt(0).y>=620&&blue_ball_group.getChildAt(0).y<670) // if ball is validated close to the validation bar  --> +5 point
@@ -251,9 +278,10 @@ function addScoreBlue () {
 			blue_ball_group.getChildAt(0).destroy();
 			scoreText.setText('score :' + score);
 			game.time.events.add(0, showNiceText, this);  // call show text function 
-			validate.play();
 			var_pop_time -=1;
-			velocity_all_ball += 10;
+			velocity_all_ball +=20;
+			music_note +=1;
+			game_music();
 		}	
 		if (blue_ball_group.getChildAt(0).y<500)
 		{
@@ -277,7 +305,9 @@ function addScoreGreen () {
 			green_ball_group.getChildAt(0).destroy();
 			scoreText.setText('score :' + score);
 			var_pop_time -=1;
-			velocity_all_ball += 10;
+			velocity_all_ball +=20;
+			music_note +=1;
+			game_music();
 		}
 		if (green_ball_group.getChildAt(0).y>=620&&green_ball_group.getChildAt(0).y<670)
 		{
@@ -285,16 +315,15 @@ function addScoreGreen () {
 			green_ball_group.getChildAt(0).destroy();	
 			scoreText.setText('score :' + score);
 			game.time.events.add(0, showNiceText, this);
-			validate.play();
 			var_pop_time -=1;
-			velocity_all_ball += 10;
+			velocity_all_ball +=20;
+			music_note +=1;
+			game_music();
 		}	
 		if (green_ball_group.getChildAt(0).y<500)
 		{
 			score -=1;
 			scoreText.setText('score :' + score);
-
-			
 		}
 	}
 }
@@ -311,7 +340,9 @@ function addScoreRed () {
 			red_ball_group.getChildAt(0).destroy();
 			scoreText.setText('score :' + score);
 			var_pop_time -=1;
-			velocity_all_ball += 10;
+			velocity_all_ball +=20;
+			music_note +=1;
+			game_music();
 		}
 		if (red_ball_group.getChildAt(0).y>=620&&red_ball_group.getChildAt(0).y<670)
 		{
@@ -319,9 +350,10 @@ function addScoreRed () {
 			red_ball_group.getChildAt(0).destroy();	
 			scoreText.setText('score :' + score);
 			game.time.events.add(0, showNiceText, this);
-			validate.play();
 			var_pop_time -=1;
-			velocity_all_ball += 10;
+			velocity_all_ball +=20;
+			music_note +=1;
+			game_music();
 		}	
 		if (red_ball_group.getChildAt(0).y<500)
 		{
@@ -346,9 +378,10 @@ function addScoreYellow () {
 			score+=1;
 			yellow_ball_group.getChildAt(0).destroy();
 			scoreText.setText('score :' + score);
-		
 			var_pop_time -=1;
-			velocity_all_ball += 10;
+			velocity_all_ball +=20;
+			music_note +=1;
+			game_music();
 		}
 		if (yellow_ball_group.getChildAt(0).y>=620&&yellow_ball_group.getChildAt(0).y<670)
 		{
@@ -356,9 +389,10 @@ function addScoreYellow () {
 			yellow_ball_group.getChildAt(0).destroy();	
 			scoreText.setText('score :' + score);
 			game.time.events.add(0, showNiceText, this);
-			validate.play();
 			var_pop_time -=1;
-			velocity_all_ball += 10;
+			velocity_all_ball +=20;
+			music_note +=1;
+			game_music();
 		}	
 		if (yellow_ball_group.getChildAt(0).y<500)
 		{
@@ -369,6 +403,38 @@ function addScoreYellow () {
 		}
 	}
 }
+
+
+function game_music() {
+	if (music_note == 1){note11.play();}	// Mélodie qu'on répète 3 fois 
+	if (music_note == 2){note12.play();}
+	if (music_note == 3){note13.play();}
+	if (music_note == 4){note14.play();}
+	if (music_note == 5){note12.play();}
+	if (music_note == 6){note15.play();}
+	if (music_note == 7){note11.play();}
+	if (music_note == 8){note12.play();}
+	if (music_note == 9){note13.play();}
+	if (music_note == 10){note14.play();}
+	if (music_note == 11){note12.play();}
+	if (music_note == 12){note15.play();}
+	if (music_note == 13){note11.play();}
+	if (music_note == 14){note12.play();}
+	if (music_note == 15){note13.play();}
+	if (music_note == 16){note14.play();}
+	if (music_note == 17){note12.play();}
+	if (music_note == 18){note15.play();}
+	
+	if (music_note == 19){note12.play();}	//musique complette
+	if (music_note == 20){note12.play();}
+	if (music_note == 21){note12.play();}
+	if (music_note == 22){note12.play();}
+	if (music_note == 23){note12.play();}
+	if (music_note == 24){note12.play();}
+	if (music_note == 25){note12.play();}
+}
+
+
 
 
 
