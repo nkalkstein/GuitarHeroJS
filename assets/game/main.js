@@ -15,8 +15,6 @@ function preload() {
 	game.load.image('red_ball' , 'assets/game/img/red_ball.png');
 	game.load.image('yellow_ball' , 'assets/game/img/yellow_ball.png');
 	game.load.image('logo','assets/game/img/logo.png');
-
-	game.load.audio('music', 'assets/game/sound/audio-game.mp3');
 	
 	game.load.audio('note1', 'assets/game/sound/Vocal 011.mp3');
 	game.load.audio('note2', 'assets/game/sound/Vocal 012.mp3');
@@ -97,16 +95,12 @@ function create() {
 	niceText = game.add.text(230, 100, 'NICE !', {font: '50px Arial',fill: '#00FF21'});
 	niceText.visible = false;
 	
-  
-	music = game.add.audio('music');// audio added
-	
 	logo = game.add.sprite(10,8, 'logo');
 	logo.scale.setTo(0.30,0.30);  // size reduction
 	
 	game.sound.stopAll();  //stop all sound for the restart
-	//music.play(); //play the background music
 	
-	note11 = game.add.audio('note1');
+	note11 = game.add.audio('note1');// audio added
 	note12 = game.add.audio('note2');
 	note13 = game.add.audio('note3');
 	note14 = game.add.audio('note4');
@@ -425,13 +419,33 @@ function game_music() {
 	if (music_note == 17){note12.play();}
 	if (music_note == 18){note15.play();}
 	
-	if (music_note == 19){note12.play();}	//musique complette
+	if (music_note == 19){note19.play();}	//musique complette
 	if (music_note == 20){note12.play();}
-	if (music_note == 21){note12.play();}
-	if (music_note == 22){note12.play();}
+	if (music_note == 21){note13.play();}
+	if (music_note == 22){note14.play();}
 	if (music_note == 23){note12.play();}
-	if (music_note == 24){note12.play();}
+	if (music_note == 24){note16.play();}
+	if (music_note == 25){note19.play();}
+	if (music_note == 26){note16.play();}
+	if (music_note == 27){note19.play();}
+	if (music_note == 28){note16.play();}
+	if (music_note == 29){note14.play();}
+	if (music_note == 30){note12.play();}
+	if (music_note == 31){note13.play();}
+	if (music_note == 32){note14.play();}
+	if (music_note == 33){note16.play();}
+	if (music_note == 34){note15.play();}
+	if (music_note == 35){note11.play();}
+	if (music_note == 36){note17.play();}
+	if (music_note == 25){note18.play();}
+	if (music_note == 25){note19.play();}
 	if (music_note == 25){note12.play();}
+	if (music_note == 25){note13.play();}
+	if (music_note == 25){note14.play();}
+	if (music_note == 25){note12.play();}
+	if (music_note == 25){note16.play();}
+
+	
 }
 
 
