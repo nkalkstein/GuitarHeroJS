@@ -262,8 +262,8 @@ function addScoreBlue () {
 			scoreText.setText('score :' + score); //update score text
 			var_pop_time -=1; // define a new var_pop_time value (increasing the difficulty)
 			velocity_all_ball +=20; // increase the velocity of each balls (increasing the difficulty)
-			music_note +=1;	// compteur determine quelle note il faut joueur
-			game_music(); //execute la fonction pour jouer la bonne note
+			music_note +=1;	// Counter determined which note play
+			game_music(); //call the gale_music function
 			
 		}
 		if (blue_ball_group.getChildAt(0).y>=620&&blue_ball_group.getChildAt(0).y<670) // if ball is validated close to the validation bar  --> +5 point
