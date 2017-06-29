@@ -400,7 +400,7 @@ function addScoreYellow () {
 
 
 function game_music() {
-	if (music_note == 1){note11.play();}	// Mélodie qu'on répète 3 fois 
+	if (music_note == 1){note11.play();}	//music pattern 
 	if (music_note == 2){note12.play();}
 	if (music_note == 3){note13.play();}
 	if (music_note == 4){note14.play();}
@@ -419,7 +419,7 @@ function game_music() {
 	if (music_note == 17){note12.play();}
 	if (music_note == 18){note15.play();}
 	
-	if (music_note == 19){note19.play();}	//musique complette
+	if (music_note == 19){note19.play();}	
 	if (music_note == 20){note12.play();}
 	if (music_note == 21){note13.play();}
 	if (music_note == 22){note14.play();}
